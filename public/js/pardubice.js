@@ -188,3 +188,5 @@ class Pardubice {
         
     }
 }
+
+export default Pardubice;

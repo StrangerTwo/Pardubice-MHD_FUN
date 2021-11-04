@@ -18,7 +18,7 @@ class BusStop {
     }
 }
 
-module.exports = {
+export default {
     Place : Place,
     BusStop : BusStop
 }

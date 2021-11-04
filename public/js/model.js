@@ -9,12 +9,14 @@ class Place {
 }
 
 class BusStop {
-    place;
+    x;
+    y;
     name;
     
     constructor (name, x, y) {
         this.name = name;
-        this.place = new Place(x, y);
+        this.x = x;
+        this.y = y;
     }
 }
 

@@ -1,9 +1,62 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+}
+
 .layout {
     overflow: scroll;
-    max-height: 80vh;
+    flex-grow: 1;
 }
 
 #pce-map {
-    width: 2339px;
-    height: 1654px;
+    position: relative;
+}
+
+.bus-stop-detail {
+    position: absolute;
+    transform: translate(20px, -50%);
+    background-color: #F1F1F1;
+    border-radius: 5px;
+    border: 1px solid #252526;
+    padding: 6px 0px;
+    width: max-content;
+}
+
+.bus-stop-detail > ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bus-stop-detail li p:nth-of-type(2) {
+    padding-left: 20px;
+}
+
+.bus-stop-detail > ul > li{
+    padding: 5px 10px;
+    border-top: 1px solid #DCDCDC;
+}
+
+.bus-stop-detail > ul > li:first-child {
+    border-top: none
+}
+p {
+    margin: 0;
+}
+
+.bus-stop, .place {
+    background-color: red;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.bus-stop {
+    width: 12px;
+    height: 12px;
+}
+.place {
+    width: 6px;
+    height: 6px;
 }

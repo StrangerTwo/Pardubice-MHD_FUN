@@ -1,0 +1,795 @@
+{
+    "BusStops": [
+        {
+            "name": "Srch, točna",
+            "x": 832,
+            "y": 66
+        },
+        {
+            "name": "Srch, obecní úřad",
+            "x": 637,
+            "y": 66
+        },
+        {
+            "name": "Srch, pohránov",
+            "x": 423,
+            "y": 105
+        },
+        {
+            "name": "Srch, hrádek",
+            "x": 354,
+            "y": 122
+        },
+        {
+            "name": "Doubravice, náměstí",
+            "x": 375,
+            "y": 187
+        },
+        {
+            "name": "Semtín, hlavní brána",
+            "x": 351,
+            "y": 251
+        },
+        {
+            "name": "Semtín, vlečka",
+            "x": 319,
+            "y": 251
+        },
+        {
+            "name": "Rybitví, závod",
+            "x": 295,
+            "y": 251
+        },
+        {
+            "name": "Rybitví, léčebna",
+            "x": 266,
+            "y": 299
+        },
+        {
+            "name": "Rybitví, křižovatka",
+            "x": 255,
+            "y": 326
+        },
+        {
+            "name": "Rybitví, Stavební šk.",
+            "x": 235,
+            "y": 341
+        },
+        {
+            "name": "Černá u Boh., bytovky",
+            "x": 239,
+            "y": 364
+        },
+        {
+            "name": "Černá u Boh.",
+            "x": 215,
+            "y": 424
+        },
+        {
+            "name": "Živanice, Dědek",
+            "x": 68,
+            "y": 388
+        },
+        {
+            "name": "Živanice",
+            "x": 68,
+            "y": 457
+        },
+        {
+            "name": "Živanice, Nerad, odb.",
+            "x": 68,
+            "y": 512
+        },
+        {
+            "name": "Živanice, Nerad",
+            "x": 68,
+            "y": 580
+        },
+        {
+            "name": "UMA, továrna",
+            "x": 262,
+            "y": 251
+        },
+        {
+            "name": "UMA, točna",
+            "x": 231,
+            "y": 251
+        },
+        {
+            "name": "Lázdně Bohdaneč, aut. nádr.",
+            "x": 203,
+            "y": 251
+        },
+        {
+            "name": "Lázdně Bohdaneč, nám.",
+            "x": 178,
+            "y": 251
+        },
+        {
+            "name": "Lázdně Bohdaneč, točna",
+            "x": 147,
+            "y": 251
+        },
+        {
+            "name": "Semtín zastávka",
+            "x": 416,
+            "y": 251
+        },
+        {
+            "name": "Globus",
+            "x": 524,
+            "y": 251
+        },
+        {
+            "name": "Trnová",
+            "x": 603,
+            "y": 251
+        },
+        {
+            "name": "Globus, parkoviště",
+            "x": 503,
+            "y": 288
+        },
+        {
+            "name": "Ohrazenice, točna",
+            "x": 468,
+            "y": 160
+        },
+        {
+            "name": "Ohrazenice, Semtínská",
+            "x": 538,
+            "y": 160
+        },
+        {
+            "name": "Staré Hradiště, Na Hledíku",
+            "x": 871,
+            "y": 174
+        },
+        {
+            "name": "Staré Hradiště, ObÚ",
+            "x": 972,
+            "y": 206
+        },
+        {
+            "name": "Staré Hradiště, Psinek",
+            "x": 1051,
+            "y": 222
+        },
+        {
+            "name": "Staré Hradiště, Brozany",
+            "x": 1140,
+            "y": 222
+        },
+        {
+            "name": "Ráby, křižovatka",
+            "x": 1162,
+            "y": 204
+        },
+        {
+            "name": "Ráby, prodejna",
+            "x": 1162,
+            "y": 173
+        },
+        {
+            "name": "Ráby, Kunětická hora",
+            "x": 1162,
+            "y": 139
+        },
+        {
+            "name": "Němčice, chaloupky",
+            "x": 1162,
+            "y": 112
+        },
+        {
+            "name": "Němčice, rybníček",
+            "x": 1162,
+            "y": 88
+        },
+        {
+            "name": "Dříteč",
+            "x": 1162,
+            "y": 49
+        },
+        {
+            "name": "Ohrazenice, škola",
+            "x": 629,
+            "y": 178
+        },
+        {
+            "name": "Trnová",
+            "x": 649,
+            "y": 243
+        },
+        {
+            "name": "Poděbradská",
+            "x": 788,
+            "y": 243
+        },
+        {
+            "name": "Hradecká",
+            "x": 871,
+            "y": 377
+        },
+        {
+            "name": "Univerzita",
+            "x": 995,
+            "y": 444
+        },
+        {
+            "name": "Cihelna, točna",
+            "x": 1022,
+            "y": 366
+        },
+        {
+            "name": "Fáblovka",
+            "x": 1022,
+            "y": 296
+        },
+        {
+            "name": "Fáblovka, točna",
+            "x": 978,
+            "y": 272
+        },
+        {
+            "name": "Staré Hradiště, hostinec",
+            "x": 1022,
+            "y": 250
+        },
+        {
+            "name": "Trnová, nám.",
+            "x": 629,
+            "y": 280
+        },
+        {
+            "name": "Polabiny, TÚ",
+            "x": 629,
+            "y": 341
+        },
+        {
+            "name": "Polabiny, Sluneční",
+            "x": 629,
+            "y": 401
+        },
+        {
+            "name": "Polabiny, Okrajová",
+            "x": 629,
+            "y": 425
+        },
+        {
+            "name": "Rosice, Kréta",
+            "x": 519,
+            "y": 444
+        },
+        {
+            "name": "Rosice, pošta",
+            "x": 433,
+            "y": 444
+        },
+        {
+            "name": "Rosice, náměstí",
+            "x": 397,
+            "y": 444
+        },
+        {
+            "name": "Rosice, Gen. Svobody",
+            "x": 353,
+            "y": 444
+        },
+        {
+            "name": "Rosice, točna",
+            "x": 295,
+            "y": 444
+        },
+        {
+            "name": "Rybitví, zadní brána",
+            "x": 271,
+            "y": 389
+        },
+        {
+            "name": "Bělehradská",
+            "x": 673,
+            "y": 444
+        },
+        {
+            "name": "Polabiny, hotel",
+            "x": 813,
+            "y": 444
+        },
+        {
+            "name": "Polabiny, Kosmonautů",
+            "x": 775,
+            "y": 386
+        },
+        {
+            "name": "Polabiny, točna",
+            "x": 775,
+            "y": 327
+        },
+        {
+            "name": "Kpt. Bartoše",
+            "x": 629,
+            "y": 507
+        },
+        {
+            "name": "Lidická",
+            "x": 629,
+            "y": 584
+        },
+        {
+            "name": "Polabiny, Albert HM",
+            "x": 629,
+            "y": 824
+        },
+        {
+            "name": "Stavařov",
+            "x": 871,
+            "y": 509
+        },
+        {
+            "name": "Zimní stadion",
+            "x": 871,
+            "y": 562
+        },
+        {
+            "name": "Zimní stadion",
+            "x": 871,
+            "y": 674
+        },
+        {
+            "name": "Sukova",
+            "x": 923,
+            "y": 700
+        },
+        {
+            "name": "Sukova",
+            "x": 988,
+            "y": 700
+        },
+        {
+            "name": "Náměstí Republiky",
+            "x": 1081,
+            "y": 782
+        },
+        {
+            "name": "Masarikovo náměstí",
+            "x": 871,
+            "y": 810
+        },
+        {
+            "name": "Třída Míru",
+            "x": 924,
+            "y": 878
+        },
+        {
+            "name": "U Grandu",
+            "x": 1052,
+            "y": 871
+        },
+        {
+            "name": "Palackého",
+            "x": 814,
+            "y": 880
+        },
+        {
+            "name": "Palackého",
+            "x": 787,
+            "y": 888
+        },
+        {
+            "name": "Autobus. nádraží",
+            "x": 719,
+            "y": 887
+        },
+        {
+            "name": "Hlavní nádraží",
+            "x": 654,
+            "y": 894
+        },
+        {
+            "name": "Albert HM",
+            "x": 603,
+            "y": 893
+        },
+        {
+            "name": "Nadjezd Paramo",
+            "x": 570,
+            "y": 921
+        },
+        {
+            "name": "K Polabinám",
+            "x": 775,
+            "y": 785
+        },
+        {
+            "name": "K Polabinám",
+            "x": 775,
+            "y": 760
+        },
+        {
+            "name": "Závodu míru, sídliště",
+            "x": 730,
+            "y": 750
+        },
+        {
+            "name": "Závodu míru",
+            "x": 680,
+            "y": 750
+        },
+        {
+            "name": "17. listopadu",
+            "x": 871,
+            "y": 997
+        },
+        {
+            "name": "Na Spravedlnosti",
+            "x": 871,
+            "y": 1102
+        },
+        {
+            "name": "Domov mládeže",
+            "x": 793,
+            "y": 1182
+        },
+        {
+            "name": "Teplého",
+            "x": 668,
+            "y": 1182
+        },
+        {
+            "name": "Dopravní podnik, vozovna",
+            "x": 620,
+            "y": 1165
+        },
+        {
+            "name": "Dopravní podnik",
+            "x": 600,
+            "y": 1182
+        },
+        {
+            "name": "Závodiště",
+            "x": 511,
+            "y": 1185
+        },
+        {
+            "name": "Letiště",
+            "x": 422,
+            "y": 1185
+        },
+        {
+            "name": "Letiště terminál",
+            "x": 422,
+            "y": 1270
+        },
+        {
+            "name": "Popkovice, školka",
+            "x": 370,
+            "y": 1210
+        },
+        {
+            "name": "Popkovice, hostinec",
+            "x": 298,
+            "y": 1185
+        },
+        {
+            "name": "Svítkov, les",
+            "x": 458,
+            "y": 1150
+        },
+        {
+            "name": "Svítkov, škola",
+            "x": 433,
+            "y": 1039
+        },
+        {
+            "name": "Svítkov, Kostnická",
+            "x": 368,
+            "y": 1039
+        },
+        {
+            "name": "Svítkov, park",
+            "x": 331,
+            "y": 1047
+        },
+        {
+            "name": "Popkovice, křižovatka",
+            "x": 331,
+            "y": 1152
+        },
+        {
+            "name": "Svítkov, stadion",
+            "x": 267,
+            "y": 1071
+        },
+        {
+            "name": "Nové Srnojedy",
+            "x": 382,
+            "y": 864
+        },
+        {
+            "name": "Staré Srnojedy",
+            "x": 357,
+            "y": 864
+        },
+        {
+            "name": "Lány na Důlku, Krchleby",
+            "x": 332,
+            "y": 864
+        },
+        {
+            "name": "Lány na Důlku",
+            "x": 307,
+            "y": 864
+        },
+        {
+            "name": "Lány na Důlku, Na Cihelně",
+            "x": 283,
+            "y": 864
+        },
+        {
+            "name": "Opočínek, točna",
+            "x": 249,
+            "y": 864
+        },
+        {
+            "name": "Starý Mateřov",
+            "x": 323,
+            "y": 1397
+        },
+        {
+            "name": "Starý Mateřov, křižovatka",
+            "x": 370,
+            "y": 1397
+        },
+        {
+            "name": "Čepí, prodejna",
+            "x": 370,
+            "y": 1512
+        },
+        {
+            "name": "Staré Čivice, Přeloučská",
+            "x": 238,
+            "y": 1185
+        },
+        {
+            "name": "Staré Čivice, hostinec",
+            "x": 214,
+            "y": 1185
+        },
+        {
+            "name": "Staré Čivice, točna",
+            "x": 192,
+            "y": 1215
+        },
+        {
+            "name": "Staré Čivice, Na Štěpnici",
+            "x": 196,
+            "y": 1171
+        },
+        {
+            "name": "Staré Čivice, Panasonic",
+            "x": 205,
+            "y": 1144
+        },
+        {
+            "name": "Staré Čivice, JTEKT",
+            "x": 205,
+            "y": 1092
+        },
+        {
+            "name": "Staré Čivice, KYB",
+            "x": 157,
+            "y": 1094
+        },
+        {
+            "name": "Staré Čivice, Průmyslová zóna",
+            "x": 139,
+            "y": 995
+        }
+    ],
+    "Places": [
+        {
+            "x": 619,
+            "y": 66
+        },
+        {
+            "x": 461,
+            "y": 96
+        },
+        {
+            "x": 348,
+            "y": 124
+        },
+        {
+            "x": 393,
+            "y": 227
+        },
+        {
+            "x": 385,
+            "y": 251
+        },
+        {
+            "x": 274,
+            "y": 283
+        },
+        {
+            "x": 249,
+            "y": 341
+        },
+        {
+            "x": 138,
+            "y": 406
+        },
+        {
+            "x": 68,
+            "y": 417
+        },
+        {
+            "x": 503,
+            "y": 251
+        },
+        {
+            "x": 629,
+            "y": 251
+        },
+        {
+            "x": 503,
+            "y": 160
+        },
+        {
+            "x": 629,
+            "y": 160
+        },
+        {
+            "x": 813,
+            "y": 160
+        },
+        {
+            "x": 1022,
+            "y": 222
+        },
+        {
+            "x": 1162,
+            "y": 222
+        },
+        {
+            "x": 629,
+            "y": 243
+        },
+        {
+            "x": 833,
+            "y": 243
+        },
+        {
+            "x": 871,
+            "y": 302
+        },
+        {
+            "x": 871,
+            "y": 444
+        },
+        {
+            "x": 1022,
+            "y": 444
+        },
+        {
+            "x": 1022,
+            "y": 272
+        },
+        {
+            "x": 629,
+            "y": 444
+        },
+        {
+            "x": 775,
+            "y": 444
+        },
+        {
+            "x": 871,
+            "y": 700
+        },
+        {
+            "x": 1081,
+            "y": 700
+        },
+        {
+            "x": 871,
+            "y": 880
+        },
+        {
+            "x": 1081,
+            "y": 866
+        },
+        {
+            "x": 787,
+            "y": 882
+        },
+        {
+            "x": 629,
+            "y": 893
+        },
+        {
+            "x": 570,
+            "y": 895
+        },
+        {
+            "x": 775,
+            "y": 750
+        },
+        {
+            "x": 871,
+            "y": 1182
+        },
+        {
+            "x": 624,
+            "y": 1182
+        },
+        {
+            "x": 570,
+            "y": 1185
+        },
+        {
+            "x": 458,
+            "y": 1185
+        },
+        {
+            "x": 411,
+            "y": 1185
+        },
+        {
+            "x": 331,
+            "y": 1185
+        },
+        {
+            "x": 458,
+            "y": 1039
+        },
+        {
+            "x": 331,
+            "y": 1039
+        },
+        {
+            "x": 331,
+            "y": 1085
+        },
+        {
+            "x": 276,
+            "y": 1185
+        },
+        {
+            "x": 257,
+            "y": 1085
+        },
+        {
+            "x": 402,
+            "y": 864
+        },
+        {
+            "x": 261,
+            "y": 1185
+        },
+        {
+            "x": 261,
+            "y": 1397
+        },
+        {
+            "x": 193,
+            "y": 1185
+        },
+        {
+            "x": 214,
+            "y": 1185
+        },
+        {
+            "x": 174,
+            "y": 1185
+        },
+        {
+            "x": 222,
+            "y": 1091
+        },
+        {
+            "x": 125,
+            "y": 1095
+        }
+    ]
+}

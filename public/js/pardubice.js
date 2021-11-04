@@ -203,9 +203,9 @@ class Pardubice {
                 circle.addEventListener("mouseover", (e) => {
                     this.createDetail(e.target, place);
                 });
-                // circle.addEventListener("mouseleave", (e) => {
-                //     this.removeDetail();
-                // });
+                circle.addEventListener("mouseleave", (e) => {
+                    this.removeDetail();
+                });
             }
             else {
                 circle.classList.add("place");
@@ -235,13 +235,17 @@ class Pardubice {
 
     createDetail(target, place) {
         if (!target.classList.contains("bus-stop")) return;
-        // this.removeDetail();
+        this.removeDetail();
 
         this.detailDiv = document.createElement("div");
-        this.detailDiv.classList.add("bus-stop-detail");
+        this.detailDiv.classList.add("bus-stop-detail-watermark");
+
+        const detailValues = document.createElement("div");
+        detailValues.classList.add("bus-stop-detail");
+        this.detailDiv.appendChild(detailValues);
 
         const ul = document.createElement("ul");
-        this.detailDiv.appendChild(ul);
+        detailValues.appendChild(ul);
 
         let li = document.createElement("li");
         ul.appendChild(li);

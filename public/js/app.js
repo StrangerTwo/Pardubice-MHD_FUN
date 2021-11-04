@@ -5,7 +5,7 @@ let timer;
 document.addEventListener("DOMContentLoaded", () => {
     const pce = new Pardubice(1.3);
     timer = setInterval(() => {
-        if (pce.Render()) timer = null;
+        if (pce.Render()) clearInterval(timer);
     }, 1);
     // pce.Render();
 })

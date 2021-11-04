@@ -5,7 +5,7 @@ class Place {
     constructor (x, y) {
         this.x = x;
         this.y = y;
-        console.log("place");
+        // console.log("place");
     }
 }
 
@@ -18,7 +18,7 @@ class BusStop {
         this.name = name;
         this.x = x;
         this.y = y;
-        console.log("place");
+        // console.log("place");
     }
 }
 

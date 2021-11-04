@@ -28,7 +28,8 @@ class Pardubice {
             })
     }
     Render() {
-        if (this.places === []) return false;
+        if (this.places.length == 0) {return false};
+        // console.log(this.places.length)
         this.map.style.width = this.width * this.sizeCoeficient + "px";
         this.map.style.height = this.height * this.sizeCoeficient + "px";
 

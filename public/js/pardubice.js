@@ -1,4 +1,6 @@
-import { Place, BusStop } from './model';
+import Model from './model.js';
+const Place = Model.Place;
+const BusStop = Model.BusStop;
 
 class Pardubice {
 

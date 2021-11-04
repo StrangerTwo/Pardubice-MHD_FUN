@@ -6,7 +6,7 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   //res.send('HelloWorld!')
-  res.sendFile(__dirname + "/index.htm");
+  res.sendFile(__dirname + "/../public/index.htm");
 })
 
 app.listen(port, () => {

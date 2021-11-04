@@ -1,3 +1,9 @@
 .layout {
     overflow: scroll;
+    max-height: 80vh;
+}
+
+#pce-map {
+    width: 2339px;
+    height: 1654px;
 }

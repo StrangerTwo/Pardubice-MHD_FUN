@@ -1,6 +1,11 @@
 import Pardubice from './pardubice.js';
 
+let timer;
+
 document.addEventListener("DOMContentLoaded", () => {
     const pce = new Pardubice(1.3);
-    pce.Render();
+    timer = setInterval(() => {
+        if (pce.Render()) timer = null;
+    }, 1);
+    // pce.Render();
 })

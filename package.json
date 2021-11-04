@@ -1,0 +1,22 @@
+{
+  "name": "pardubice-mhd",
+  "version": "1.0.0",
+  "description": "visualization of Pardubice's public transport",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StrangerTwo/Pardubice-MHD.git"
+  },
+  "author": "Jakub Kacalek, Jan Volhejn, Martin Bisko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StrangerTwo/Pardubice-MHD/issues"
+  },
+  "homepage": "https://github.com/StrangerTwo/Pardubice-MHD#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

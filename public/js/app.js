@@ -1,5 +1,11 @@
 import Pardubice from './pardubice.js';
 
+if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js')
+    .then((reg) => console.log("serviceWorker registered", reg))
+    .catch((err) => console.log("serviceWorker not registered", err))
+}
+
 let timer;
 
 document.addEventListener("DOMContentLoaded", () => {

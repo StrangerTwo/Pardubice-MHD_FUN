@@ -1,0 +1,16 @@
+{
+    "name": "Pardubice MHD",
+    "short_name": "PardubiceMHD",
+    "start_url": "index.html",
+    "display" : "standalone",
+    "backgroud_color" : "#00000",
+    "theme_color" : "#338241",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "icon.png",
+            "type": "image/png",
+            "sizes": "180x180"
+        }
+    ]
+}

@@ -23,8 +23,7 @@ class Pardubice {
         fetch('api/getPlaces')
             .then(response => response.json())
             .then(data => {
-                data['Places'].forEach(place => this.places = [...this.places, new Place(place.x, place.y)]);
-                data['BusStops'].forEach(place => this.places = [...this.places, new BusStop(place.name, place.x, place.y)]);
+                this.places = data;
             })
     }
     Render() {

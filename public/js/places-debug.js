@@ -1,8 +1,12 @@
+import Model from './model.js';
+const Place = Model.Place;
+const BusStop = Model.BusStop;
+
 class PlacesDebug {
     places;
 
     constructor() {
-        places = [];
+        this.places = new Array();
     }
 
     debug(){
@@ -176,11 +180,11 @@ class PlacesDebug {
         this.places = [...this.places, new Place(125, 1095)];
         this.places = [...this.places, new BusStop("Staré Čivice, Průmyslová zóna", 139, 995)];
 
-        for(let i = 1; i <= this.places.length; i++) {
-            this.places[i].id = i;
+        for(let i = 0; i < this.places.length; i++) {
+            this.places[i].id = i + 1;
         }
 
-        console.log(this.places);
+        console.log(JSON.stringify(this.places));
     }
 }
 

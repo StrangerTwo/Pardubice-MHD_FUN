@@ -3,11 +3,11 @@ self.addEventListener('install', evt => {
     evt.waitUntil(
         caches.open('static-v1')
             .then(cache => cache.addAll([
-                './index.html',
-                './css/style.css',
-                './js/pardubice.js',
-                './js/model.js',
-                './js/app.js'
+                '../index.html',
+                '../css/style.css',
+                '../js/pardubice.js',
+                '../js/model.js',
+                '../js/app.js'
             ]))
     );
 });  

@@ -5,6 +5,11 @@ const api = require("./api");
 
 app.use(express.static('../public'));
 
+app.use((req, res, next) => {
+  res.set("Service-Worker-Allowed", "/");
+  next();
+});
+
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });

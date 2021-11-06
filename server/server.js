@@ -3,13 +3,16 @@ const app = express();
 const port = 3000;
 const api = require("./api");
 
-app.use(express.static('../public'));
+app.use(express.static(
+  '../public',
+  {
+      setHeaders: (res) => {
+          res.setHeader('Service-Worker-Allowed', '/')
+      }
+  }
+));
 
-app.use((req, res, next) => {
-  res.set("Service-Worker-Allowed", "/");
-  res.setHeader("Service-Worker-Allowed", "/");
-  next();
-});
+// app.use(express.static('../public'));
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

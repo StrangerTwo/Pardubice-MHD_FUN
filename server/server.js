@@ -7,6 +7,7 @@ app.use(express.static('../public'));
 
 app.use((req, res, next) => {
   res.set("Service-Worker-Allowed", "/");
+  res.setHeader("Service-Worker-Allowed", "/");
   next();
 });
 

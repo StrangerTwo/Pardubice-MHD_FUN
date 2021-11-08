@@ -261,9 +261,10 @@ class PlacesDebug {
         this.places = [...this.places, new Place(1967, 871)];
         this.places = [...this.places, new BusStop("Na Drážce", 1786, 994)];
         this.places = [...this.places, new BusStop("U Kostelíčka", 1562, 966)];
-        this.places = [...this.places, new Place(1967, 1000)];
+        this.places = [...this.places, new Place(1562, 1000)];
         this.places = [...this.places, new BusStop("U Kostelíčka", 1562, 1028)];
         this.places = [...this.places, new BusStop("Štrossova", 1562, 1075)];
+        this.places = [...this.places, new Place(1562, 1140)];
         this.places = [...this.places, new BusStop("Nemocnice", 1562, 1181)];
         this.places = [...this.places, new BusStop("Kyjevská", 1562, 1225)];
         this.places = [...this.places, new BusStop("Pardubičky, točna", 1562, 1282)];
@@ -275,7 +276,22 @@ class PlacesDebug {
         this.places = [...this.places, new Place(1517, 1523)];
         this.places = [...this.places, new BusStop("Nemošice, Nábřežní", 1555, 1496)];
         this.places = [...this.places, new BusStop("Nemošice, točna", 1616, 1450)];
-
+        this.places = [...this.places, new Place(1617, 1550)];
+        this.places = [...this.places, new BusStop("Ostřešany, hřiště", 1630, 1550)];
+        this.places = [...this.places, new BusStop("Ostřešany, škola", 1718, 1550)];
+        this.places = [...this.places, new BusStop("Ostřešany, park", 1810, 1550)];
+        this.places = [...this.places, new BusStop("Ostřešany, točna", 1921, 1550)];
+        this.places = [...this.places, new Place(1809, 1101)];
+        this.places = [...this.places, new BusStop("Slovany, Dašická", 1830, 1101)];
+        this.places = [...this.places, new BusStop("Slovany, Spojilská", 1883, 1101)];
+        this.places = [...this.places, new BusStop("Slovany, U Přejezdu", 1930, 1101)];
+        this.places = [...this.places, new BusStop("Slovany, točna", 1978, 1101)];
+        this.places = [...this.places, new Place(1786, 1140)];
+        this.places = [...this.places, new BusStop("K nemocnici", 1543, 1140)];
+        this.places = [...this.places, new Place(1211, 1140)];
+        this.places = [...this.places, new BusStop("K nemocnici", 951, 1065)];
+        this.places = [...this.places, new Place(784, 1021)];
+        
         for(let i = 0; i < this.places.length; i++) {
             this.places[i].id = i + 1;
         }

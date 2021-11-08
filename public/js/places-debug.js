@@ -185,8 +185,8 @@ class PlacesDebug {
         this.places = [...this.places, new BusStop("Dukla, KD", 755, 1241)];
         this.places = [...this.places, new BusStop("Gorkého škola", 834, 1241)];
         this.places = [...this.places, new Place(871, 1241)];
-        this.places = [...this.places, new BusStop("Gorkého", 834, 1228)];
-        this.places = [...this.places, new BusStop("Gorkého", 834, 1265)];
+        this.places = [...this.places, new BusStop("Gorkého", 871, 1228)];
+        this.places = [...this.places, new BusStop("Gorkého", 871, 1265)];
         this.places = [...this.places, new BusStop("Dukla, náměstí", 624, 1291)];
         this.places = [...this.places, new Place(624, 1333)];
         this.places = [...this.places, new BusStop("Jilemnického", 698, 1333)];
@@ -207,6 +207,22 @@ class PlacesDebug {
         this.places = [...this.places, new BusStop("Mikulovice, Staňkova", 964, 1535)];
         this.places = [...this.places, new Place(871, 1388)];
         this.places = [...this.places, new BusStop("Zborovské náměstí", 871, 1355)];
+        this.places = [...this.places, new Place(1074, 1388)];
+        this.places = [...this.places, new BusStop("Krematorium", 1100, 1388)];
+        this.places = [...this.places, new Place(1170, 1388)];
+        this.places = [...this.places, new Place(871, 1314)];
+        this.places = [...this.places, new BusStop("U kapitána", 901, 1314)];
+        this.places = [...this.places, new BusStop("Ulice Svobody", 1123, 1314)];
+        this.places = [...this.places, new Place(1170, 1314)];
+        this.places = [...this.places, new BusStop("S. K. Neumanna", 1170, 1266)];
+        this.places = [...this.places, new BusStop("Výzkumný ústav", 1170, 1176)];
+        this.places = [...this.places, new BusStop("Karla IV.", 1170, 1005)];
+        this.places = [...this.places, new BusStop("Náměstí Republiky", 1081, 908)];
+        this.places = [...this.places, new Place(1081, 925)];
+        this.places = [...this.places, new Place(1170, 925)];
+        this.places = [...this.places, new BusStop("Krajský úřad", 1302, 925)];
+        this.places = [...this.places, new Place(1074, 1474)];
+        this.places = [...this.places, new BusStop("Nemošická, bytovky", 1200, 1474)];
 
         for(let i = 0; i < this.places.length; i++) {
             this.places[i].id = i + 1;

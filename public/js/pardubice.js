@@ -94,8 +94,11 @@ class Pardubice {
 
         li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p>`
 
-
         target.appendChild(this.detailDiv);
+
+        if (parseInt(target.style.left, 10) + this.detailDiv.offsetWidth > this.width * this.sizeCoeficient) {
+            this.detailDiv.classList.add("option-left");
+        }
     }
 }
 

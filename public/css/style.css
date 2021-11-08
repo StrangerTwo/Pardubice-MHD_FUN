@@ -6,7 +6,55 @@ h1 {
     display: flex;
     flex-direction: column;
     max-height: 100vh;
+    transition: padding 600ms ease-out;
 }
+
+.page.open {
+    padding-right: 300px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    background: #151719;
+    width: 300px;
+    height: 100%;
+    transition: right 600ms ease-out;
+}
+
+.sidebar.open {
+    right: 0px;
+}
+
+.sidebar .toggle-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 325px;
+    top: 20px;
+    height: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar .toggle-btn div {
+    width: 35px;
+    height: 6px;
+    background-color: #111;
+    transition: transform 0.5s, opacity 0.35s;
+}
+
+.sidebar.open .toggle-btn .bar-1 {
+    transform: rotate(-45deg) translate(-10px, 10px);
+}
+.sidebar.open .toggle-btn .bar-2 {
+    opacity: 0;
+}
+.sidebar.open .toggle-btn .bar-3 {
+    transform: rotate(45deg) translate(-10px, -10px);
+}
+
 
 .layout {
     overflow: scroll;
@@ -23,6 +71,12 @@ h1 {
     padding-left: 20px;
     height: max-content;
     width: max-content;
+}
+
+.bus-stop-detail-watermark.option-left {
+    padding-left: 0;
+    padding-right: 20px;
+    transform: translate(-100%, -50%);
 }
 
 .bus-stop-detail {

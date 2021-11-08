@@ -35,7 +35,7 @@ class Pardubice {
         this.places.forEach((place) => {
             let circle = document.createElement("div");
 
-            if (place.name) {
+            if (place.type == 'busstop') {
                 circle.classList.add("bus-stop");
                 circle.addEventListener("mouseover", (e) => {
                     this.createDetail(e.target, place);
@@ -73,6 +73,7 @@ class Pardubice {
 
     createDetail(target, place) {
         if (!target.classList.contains("bus-stop")) return;
+        if (place.type != 'busstop') return;
         this.removeDetail();
 
         this.detailDiv = document.createElement("div");

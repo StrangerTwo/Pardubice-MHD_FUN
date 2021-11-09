@@ -2,14 +2,14 @@ h1, h2 {
     text-align: center;
 }
 
-.page {
+#page {
     display: flex;
     flex-direction: column;
     max-height: 100vh;
     transition: padding 600ms ease-out;
 }
 
-.page.open {
+#page.open {
     padding-right: 300px;
 }
 

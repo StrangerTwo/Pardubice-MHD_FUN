@@ -17,10 +17,11 @@ h1, h2 {
     position: fixed;
     top: 0;
     right: -300px;
-    background: #151719;
+    background: #919191;
     width: 300px;
     height: 100%;
     transition: right 600ms ease-out;
+    color: #fff;
 }
 
 .sidebar.open {
@@ -55,6 +56,9 @@ h1, h2 {
     transform: rotate(45deg) translate(-10px, -10px);
 }
 
+ul.buslines {
+    list-style: none;
+}
 
 .layout {
     overflow: scroll;

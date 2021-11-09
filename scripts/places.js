@@ -1,6 +1,26 @@
-import Model from './model.js';
-const Place = Model.Place;
-const BusStop = Model.BusStop;
+const fs = require('fs');
+
+class Place {
+    x;
+    y;
+
+    constructor (x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+class BusStop {
+    x;
+    y;
+    name;
+    
+    constructor (name, x, y) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+    }
+}
 
 class PlacesDebug {
     places;
@@ -336,7 +356,13 @@ class PlacesDebug {
             this.places[i].id = i + 1;
         }
 
-        console.log(JSON.stringify(this.places));
+        const placesJson = JSON.stringify(this.places);
+        fs.writeFile("../server/files/places.json", placesJson, (err) => {
+            if(err) {
+                return console.log(err);
+            }
+            console.log("Places were updated successfully!");
+        });
     }
 }
 

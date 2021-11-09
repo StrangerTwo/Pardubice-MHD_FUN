@@ -13,7 +13,7 @@ h1, h2 {
     padding-right: 300px;
 }
 
-.sidebar {
+#sidebar {
     position: fixed;
     top: 0;
     right: -300px;
@@ -24,11 +24,11 @@ h1, h2 {
     color: #fff;
 }
 
-.sidebar.open {
+#sidebar.open {
     right: 0px;
 }
 
-.sidebar .toggle-btn {
+#sidebar .toggle-btn {
     cursor: pointer;
     position: absolute;
     right: 325px;
@@ -39,20 +39,20 @@ h1, h2 {
     justify-content: space-between;
 }
 
-.sidebar .toggle-btn div {
+#sidebar .toggle-btn div {
     width: 35px;
     height: 6px;
     background-color: #111;
     transition: transform 0.5s, opacity 0.35s;
 }
 
-.sidebar.open .toggle-btn .bar-1 {
+#sidebar.open .toggle-btn .bar-1 {
     transform: rotate(-45deg) translate(-10px, 10px);
 }
-.sidebar.open .toggle-btn .bar-2 {
+#sidebar.open .toggle-btn .bar-2 {
     opacity: 0;
 }
-.sidebar.open .toggle-btn .bar-3 {
+#sidebar.open .toggle-btn .bar-3 {
     transform: rotate(45deg) translate(-10px, -10px);
 }
 

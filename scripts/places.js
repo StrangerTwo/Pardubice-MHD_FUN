@@ -357,7 +357,7 @@ class PlacesDebug {
         }
 
         const placesJson = JSON.stringify(this.places);
-        fs.writeFile("../server/files/places.json", placesJson, (err) => {
+        fs.writeFile(__dirname + "/../server/files/places.json", placesJson, (err) => {
             if(err) {
                 return console.log(err);
             }

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const sidebarToggle = document.querySelector("#sidebar .toggle-btn");
     sidebarToggle.addEventListener("click", () => {
-        document.querySelector(".sidebar").classList.toggle("open");
-        document.querySelector(".page").classList.toggle("open");
+        document.querySelector("#sidebar").classList.toggle("open");
+        document.querySelector("#page").classList.toggle("open");
     })
 })

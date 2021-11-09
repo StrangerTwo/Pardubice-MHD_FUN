@@ -20,7 +20,7 @@ async function run() {
     await browser.close();
 
     const timetablesJson = JSON.stringify(timetables);
-    fs.writeFile("../server/files/timetables.json", timetablesJson, (err) => {
+    fs.writeFile(__dirname + "/../server/files/timetables.json", timetablesJson, (err) => {
         if(err) {
             return console.log(err);
         }

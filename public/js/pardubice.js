@@ -171,12 +171,8 @@ class Pardubice {
                 });
 
                 this.buslines.forEach((busline) => {
-                    
-                    this.checked.forEach((number) => {
-                        if(number == busline.number){
-                            this.renderBusline(busline);
-                        }
-                    });
+                    if(this.checked.includes(busline.number))
+                        this.renderBusline(busline);
                 })
 
             });

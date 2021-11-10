@@ -76,7 +76,8 @@ class Pardubice {
 
             this.map.appendChild(circle);
         })
-
+        
+        this.generateSideBar();
 
         for (let busline of this.buslines) {
             this.renderBusline(busline);
@@ -131,6 +132,29 @@ class Pardubice {
 
     getPosition(place) {
         return [place.x * this.sizeCoeficient, place.y * this.sizeCoeficient];
+    }
+
+    generateSideBar(){
+        let sidebar = document.querySelector("#sidebar ul");
+        this.buslines.forEach((busline) => {
+            let li = document.createElement("li");
+            sidebar.appendChild(li);
+
+            let checkBox = document.createElement("input");
+            checkBox.type = "checkbox";
+            checkBox.name = "buslines";
+            checkBox.id = "bus-" + busline.number;
+            checkBox.value = busline.number;
+            checkBox.checked = true;
+            li.appendChild(checkBox);
+
+            li.appendChild(document.createTextNode(" "));
+
+            let label = document.createElement("label");
+            label.htmlFor = "bus-" + busline.number;
+            label.innerText = busline.number;
+            li.appendChild(label);
+        });
     }
 
     detailDiv;

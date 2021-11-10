@@ -164,10 +164,10 @@ class Pardubice {
         li = document.createElement("li");
         ul.appendChild(li);
 
-        //li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p><p>ID : ${place.id}</p>`
+        // li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p><p>ID : ${place.id}</p>`
         let buses = [];
         this.buslines.forEach((buslines) => {
-            buslines.places.forEach((buslinePlace) => {
+            buslines.route.forEach((buslinePlace) => {
                 if(buslinePlace == place.id){
                     if(!buses.includes(buslines.number))
                         buses.push(buslines.number);
@@ -181,7 +181,7 @@ class Pardubice {
                 li.innerHTML += ", ";
             }
         }
-        li.innerHTML += ` </p>`;
+        li.innerHTML += ` </p><p>ID : ${place.id}</p>`;
 
         target.appendChild(this.detailDiv);
 

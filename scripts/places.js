@@ -347,7 +347,7 @@ class PlacesDebug {
         this.places = [...this.places, new BusStop("Úhřetice", 2146, 1604)];
         this.places = [...this.places, new BusStop("Hostovická", 2186, 1303)];
         this.places = [...this.places, new BusStop("Černá za Bory, točna", 2206, 1282)];
-        this.places = [...this.places, new Place(2224, 1325)];
+        this.places = [...this.places, new Place(2206, 1325)];
         this.places = [...this.places, new BusStop("Žižín", 2272, 1282)];
         this.places = [...this.places, new BusStop("Hostovice", 2244, 1453)];
         this.places = [...this.places, new Place(2053, 1282)];

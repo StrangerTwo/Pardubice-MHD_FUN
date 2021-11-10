@@ -167,7 +167,6 @@ class Pardubice {
     }
 
     createDetail(target, place) {
-        // TODO: uncomment
         if (!target.classList.contains("place")) return;
         this.removeDetail();
 
@@ -205,7 +204,11 @@ class Pardubice {
                 li.innerHTML += ", ";
             }
         }
-        li.innerHTML += ` </p><p>ID : ${place.id}</p>`;
+        li.innerHTML += ` </p>`;
+
+        li = document.createElement('li');
+        ul.appendChild(li);
+        li.innerHTML = `ID : ${place.id}`;
 
         target.appendChild(this.detailDiv);
 

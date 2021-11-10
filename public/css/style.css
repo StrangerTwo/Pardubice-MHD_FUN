@@ -124,11 +124,11 @@ p {
     z-index: 1;
 }
 
-.bus-stop {
-    width: 12px;
-    height: 12px;
-}
 .place {
     width: 6px;
     height: 6px;
+}
+.bus-stop {
+    width: 12px;
+    height: 12px;
 }

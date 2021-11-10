@@ -1,11 +1,10 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-const TYPE_POLOOKRUZNI = "polookruzni";
-
-async function getTimeTable(page, busNumber, type, link) {
+async function getTimeTable(page, busNumber, link) {
     await page.goto(link);
-    console.log(type);
+    
+    console.log(link);
 }
 
 async function run() {
@@ -14,7 +13,7 @@ async function run() {
 
     var timetables = [];
 
-    timetables = [...timetables, await getTimeTable(page, 1, TYPE_POLOOKRUZNI, 'https://www.dpmp.cz/download/other/jr/platnost_20210701/JR100000001001A.htm')]
+    timetables = [...timetables, await getTimeTable(page, 1, 'https://www.dpmp.cz/download/other/jr/platnost_20210701/JR100000001001A.htm')]
 
     
     await browser.close();
@@ -28,5 +27,4 @@ async function run() {
     });
 }
 
-console.log("not working yet");
-//run();
+run();

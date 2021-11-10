@@ -147,7 +147,7 @@ class PlacesDebug {
         this.places = [...this.places, new BusStop("Závodu míru, sídliště", 730, 750)];
         this.places = [...this.places, new BusStop("Závodu míru", 680, 750)];
         this.places = [...this.places, new BusStop("17. listopadu", 871, 997)];
-        this.places = [...this.places, new BusStop("Na Spravedlnosti", 871, 1102)];
+        this.places = [...this.places, new BusStop("Jana Palacha", 871, 1102)];
         this.places = [...this.places, new Place(871, 1182)];
         this.places = [...this.places, new BusStop("Domov mládeže", 793, 1182)];
         this.places = [...this.places, new BusStop("Teplého", 668, 1182)];
@@ -217,7 +217,7 @@ class PlacesDebug {
         this.places = [...this.places, new BusStop("Kapitána Nálepky", 700, 1396)];
         this.places = [...this.places, new BusStop("Demokratické mládeže", 827, 1396)];
         this.places = [...this.places, new Place(871, 1396)];
-        this.places = [...this.places, new BusStop("Nemošická", 871, 1402)];
+        this.places = [...this.places, new BusStop("Chrudimská", 871, 1402)];
         this.places = [...this.places, new BusStop("Čacké", 871, 1422)];
         this.places = [...this.places, new BusStop("Jesničánky, točna", 871, 1452)];
         this.places = [...this.places, new BusStop("Dražkovice, križovatka", 871, 1484)];
@@ -305,11 +305,11 @@ class PlacesDebug {
         this.places = [...this.places, new BusStop("Slovany, Dašická", 1830, 1101)];
         this.places = [...this.places, new BusStop("Slovany, Spojilská", 1883, 1101)];
         this.places = [...this.places, new BusStop("Slovany, U Přejezdu", 1930, 1101)];
-        this.places = [...this.places, new BusStop("Slovany, točna", 1978, 1101)];
+        this.places = [...this.places, new Place(1978, 1101)];
         this.places = [...this.places, new Place(1786, 1140)];
         this.places = [...this.places, new BusStop("K nemocnici", 1543, 1140)];
         this.places = [...this.places, new Place(1211, 1140)];
-        this.places = [...this.places, new BusStop("K nemocnici", 951, 1065)];
+        this.places = [...this.places, new BusStop("Hlaváčova", 951, 1065)];
         this.places = [...this.places, new Place(784, 1021)];
         this.places = [...this.places, new Place(700, 889)];
         this.places = [...this.places, new Place(1755, 1282)];
@@ -351,6 +351,7 @@ class PlacesDebug {
         this.places = [...this.places, new Place(2224, 1325)];
         this.places = [...this.places, new BusStop("Žižín", 2272, 1282)];
         this.places = [...this.places, new BusStop("Hostovice", 2244, 1453)];
+        this.places = [...this.places, new Place(2053, 1282)];
         
         for(let i = 0; i < this.places.length; i++) {
             this.places[i].id = i + 1;

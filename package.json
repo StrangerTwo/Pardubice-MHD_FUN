@@ -5,8 +5,8 @@
   "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cd ./server && node server.js",
-    "scripts": "node ./scripts/places.js && node ./scripts/timetables.js"
+    "dev": "cd ./server && nodemon server.js",
+    "scripts": "node ./scripts/places.js && node ./scripts/buslines.js"
   },
   "repository": {
     "type": "git",

@@ -34,6 +34,7 @@ class Pardubice {
 
         this.places.forEach((place) => {
             let circle = document.createElement("div");
+            circle.classList.add("place");
 
             if (place.name) {
                 circle.classList.add("bus-stop");
@@ -45,7 +46,13 @@ class Pardubice {
                 });
             }
             else {
-                circle.classList.add("place");
+                // TODO: Remove
+                circle.addEventListener("mouseover", (e) => {
+                    this.createDetail(e.target, place);
+                });
+                circle.addEventListener("mouseleave", (e) => {
+                    this.removeDetail();
+                });
             }
 
             const [x, y] = this.getPosition(place);
@@ -72,7 +79,8 @@ class Pardubice {
     }
 
     createDetail(target, place) {
-        if (!target.classList.contains("bus-stop")) return;
+        // TODO: uncomment
+        if (!target.classList.contains("place")) return;
         this.removeDetail();
 
         this.detailDiv = document.createElement("div");
@@ -87,12 +95,12 @@ class Pardubice {
 
         let li = document.createElement("li");
         ul.appendChild(li);
-        li.innerHTML = place.name;
+        li.innerHTML = place.name ? place.name : "";
 
         li = document.createElement("li");
         ul.appendChild(li);
 
-        li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p>`
+        li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p><p>ID : ${place.id}</p>`
 
         target.appendChild(this.detailDiv);
 

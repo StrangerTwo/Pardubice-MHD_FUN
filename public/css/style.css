@@ -132,3 +132,7 @@ p {
     width: 12px;
     height: 12px;
 }
+.road {
+    background-color: red;
+    position: absolute;
+}

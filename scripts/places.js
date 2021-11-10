@@ -31,7 +31,6 @@ class PlacesDebug {
 
     debug(){
         this.places = [...this.places, new BusStop("Srch, točna", 832, 66)];
-        this.places = [...this.places, new BusStop("Srch, točna", 832, 66)];
         this.places = [...this.places, new BusStop("Srch, obecní úřad", 637, 66)];
         this.places = [...this.places, new Place(619, 66)];
         this.places = [...this.places, new Place(461, 96)];

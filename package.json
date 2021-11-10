@@ -4,7 +4,9 @@
   "description": "visualization of Pardubice's public transport",
   "main": "./server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cd ./server && nodemon server.js",
+    "scripts": "node ./scripts/places.js && node ./scripts/buslines.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,10 @@
   },
   "homepage": "https://github.com/StrangerTwo/Pardubice-MHD#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "fs": "0.0.1-security"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^11.0.0"
   }
 }

@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const pce = new Pardubice(1.3);
     timer = setInterval(() => {
         if (pce.Render()) clearInterval(timer);
-    }, 1);
+    }, 100);
     
-    const sidebarToggle = document.querySelector(".sidebar .toggle-btn");
+    const sidebarToggle = document.querySelector("#sidebar .toggle-btn");
     sidebarToggle.addEventListener("click", () => {
-        document.querySelector(".sidebar").classList.toggle("open");
-        document.querySelector(".page").classList.toggle("open");
+        document.querySelector("#sidebar").classList.toggle("open");
+        document.querySelector("#page").classList.toggle("open");
     })
 })

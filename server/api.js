@@ -10,4 +10,9 @@ router.use(function timeLog (req, res, next) {
 router.get('/getPlaces', (req, res) => {
     res.json(placesJSONFILE);
 })
+
+const linesJSONFILE = require("./files/buslines.json");
+router.get('/getLines', (req, res) => {
+    res.json(linesJSONFILE);
+})
 module.exports = router;

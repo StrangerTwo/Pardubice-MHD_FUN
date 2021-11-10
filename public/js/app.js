@@ -8,9 +8,10 @@ if('serviceWorker' in navigator){
 
 let timer;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const pce = new Pardubice(1.3);
-    pce.DownloadData().then(pce.Render());
+    await pce.DownloadData();
+    pce.Render();
     
     const sidebarToggle = document.querySelector("#sidebar .toggle-btn");
     sidebarToggle.addEventListener("click", () => {

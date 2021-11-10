@@ -19,20 +19,21 @@ class Pardubice {
     }
 
     async DownloadData() {
-        this.fillInPlaces();
-        this.fillInLines();
+        await this.fillInPlaces();
+        await this.fillInLines();
+        return true;
     }
 
-    fillInLines() {
-        fetch('api/getLines')
+    async fillInLines() {
+        await fetch('api/getLines')
             .then(response => response.json())
             .then(data => {
                 this.buslines = data;
             })
     }
 
-    fillInPlaces() {
-        fetch('api/getPlaces')
+    async fillInPlaces() {
+        await fetch('api/getPlaces')
             .then(response => response.json())
             .then(data => {
                 this.places = data;
@@ -86,7 +87,6 @@ class Pardubice {
 
     renderBusline(busline) {
         for (let i = 1; i < busline.route.length; i++) {
-            console.log(busline.route[i])
             this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]));
         }
     }

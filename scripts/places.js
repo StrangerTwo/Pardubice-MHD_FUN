@@ -30,14 +30,14 @@ class PlacesDebug {
     }
 
     debug(){
-        this.places = [...this.places, new BusStop("Srch, točna", 832, 66)];
-        this.places = [...this.places, new BusStop("Srch, obecní úřad", 637, 66)];
+        this.places = [...this.places, new BusStop("Srch,točna", 832, 66)];
+        this.places = [...this.places, new BusStop("Srch,obecní úřad", 637, 66)];
         this.places = [...this.places, new Place(619, 66)];
         this.places = [...this.places, new Place(461, 96)];
-        this.places = [...this.places, new BusStop("Srch, pohránov", 423, 105)];
-        this.places = [...this.places, new BusStop("Srch, hrádek", 354, 122)];
+        this.places = [...this.places, new BusStop("Srch,Pohránov", 423, 105)];
+        this.places = [...this.places, new BusStop("Srch,Hrádek", 354, 122)];
         this.places = [...this.places, new Place(348, 124)];
-        this.places = [...this.places, new BusStop("Doubravice, náměstí", 375, 187)];
+        this.places = [...this.places, new BusStop("Doubravice", 375, 187)];
         this.places = [...this.places, new Place(393, 227)];
         this.places = [...this.places, new Place(385, 251)];
         this.places = [...this.places, new BusStop("Semtín, hlavní brána", 351, 251)];
@@ -68,8 +68,8 @@ class PlacesDebug {
         this.places = [...this.places, new Place(629, 251)];
         this.places = [...this.places, new BusStop("Globus, parkoviště", 503, 288)];
         this.places = [...this.places, new Place(503, 160)];
-        this.places = [...this.places, new BusStop("Ohrazenice, točna", 468, 160)];
-        this.places = [...this.places, new BusStop("Ohrazenice, Semtínská", 538, 160)];
+        this.places = [...this.places, new BusStop("Ohrazenice,točna", 468, 160)];
+        this.places = [...this.places, new BusStop("Ohrazenice,Semtínská", 538, 160)];
         this.places = [...this.places, new Place(629, 160)];
         this.places = [...this.places, new Place(813, 160)];
         this.places = [...this.places, new BusStop("Staré Hradiště, Na Hledíku", 871, 174)];
@@ -84,7 +84,7 @@ class PlacesDebug {
         this.places = [...this.places, new BusStop("Němčice, chaloupky", 1162, 112)];
         this.places = [...this.places, new BusStop("Němčice, rybníček", 1162, 88)];
         this.places = [...this.places, new BusStop("Dříteč", 1162, 49)];
-        this.places = [...this.places, new BusStop("Ohrazenice, škola", 629, 178)];
+        this.places = [...this.places, new BusStop("Ohrazenice,škola", 629, 178)];
         this.places = [...this.places, new Place(629, 243)];
         this.places = [...this.places, new BusStop("Trnová", 649, 243)];
         this.places = [...this.places, new BusStop("Poděbradská", 788, 243)];
@@ -351,6 +351,7 @@ class PlacesDebug {
         this.places = [...this.places, new BusStop("Žižín", 2272, 1282)];
         this.places = [...this.places, new BusStop("Hostovice", 2244, 1453)];
         this.places = [...this.places, new Place(2053, 1282)];
+        this.places = [...this.places, new Place(619, 96)];
         
         for(let i = 0; i < this.places.length; i++) {
             this.places[i].id = i + 1;

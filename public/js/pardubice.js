@@ -148,7 +148,24 @@ class Pardubice {
         li = document.createElement("li");
         ul.appendChild(li);
 
-        li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p><p>ID : ${place.id}</p>`
+        //li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p><p>ID : ${place.id}</p>`
+        let buses = [];
+        this.buslines.forEach((buslines) => {
+            buslines.places.forEach((buslinePlace) => {
+                if(buslinePlace == place.id){
+                    if(!buses.includes(buslines.number))
+                        buses.push(buslines.number);
+                }
+            })
+        })
+        li.innerHTML = `<p>Autobusy: `;
+        for (let i = 0; i < buses.length; i++) {
+            li.innerHTML += buses[i];
+            if(i != buses.length - 1){
+                li.innerHTML += ", ";
+            }
+        }
+        li.innerHTML += ` </p>`;
 
         target.appendChild(this.detailDiv);
 

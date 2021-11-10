@@ -74,9 +74,17 @@ class Pardubice {
         })
 
 
-
+        for (busline of this.buslines) {
+            this.renderBusline(busline);
+        }
         this.linedraw(this.places.find(x => x.id == 1), this.places.find(x => x.id == 2))
         return true;
+    }
+
+    renderBusline(busline) {
+        for (let i = 1; i < busline.route.length; i++) {
+            this.linedraw(busline.route[i - 1], busline.route[i]);
+        }
     }
 
     linedraw(a, b) {

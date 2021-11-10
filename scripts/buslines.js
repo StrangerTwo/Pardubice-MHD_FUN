@@ -3,7 +3,7 @@ const fs = require('fs');
 function newBusline(busNumber, places) {
     return {
         number: busNumber,
-        places: places,
+        route: places,
     };
 }
 

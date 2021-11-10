@@ -118,20 +118,18 @@ p {
     margin: 0;
 }
 
-.bus-stop, .place {
+.place {
+    width: 6px;
+    height: 6px;
     background-color: red;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     position: absolute;
-}
-
-.bus-stop:not(:empty), .place:not(:empty) {
     z-index: 1;
 }
 
-.place {
-    width: 6px;
-    height: 6px;
+.place:not(:empty) {
+    z-index: 10;
 }
 .bus-stop {
     width: 12px;
@@ -141,4 +139,5 @@ p {
     width: 6px;
     background-color: red;
     position: absolute;
+    user-select: none;
 }

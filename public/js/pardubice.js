@@ -5,6 +5,7 @@ const BusStop = Model.BusStop;
 class Pardubice {
 
     places;
+    buslines;
     sizeCoeficient;
     width = 2339;
     height = 1654;
@@ -15,8 +16,16 @@ class Pardubice {
         this.sizeCoeficient = sizeCoeficient;
 
         this.map = document.getElementById("pce-map");
-        this.fillInPlaces()
+        this.fillInPlaces();
+        this.fillInLines();
+    }
 
+    fillInLines() {
+        fetch('api/getLines')
+            .then(response => response.json())
+            .then(data => {
+                this.buslines = data;
+            })
     }
 
     fillInPlaces() {
@@ -26,6 +35,7 @@ class Pardubice {
                 this.places = data;
             })
     }
+
     Render() {
         if (this.places.length == 0) { return false };
         // console.log(this.places.length)
@@ -62,6 +72,7 @@ class Pardubice {
 
             this.map.appendChild(circle);
         })
+
 
 
         this.linedraw(this.places.find(x => x.id == 1), this.places.find(x => x.id == 2))

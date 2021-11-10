@@ -13,7 +13,6 @@ router.get('/getPlaces', (req, res) => {
 })
 
 router.get('/getLines', (req, res) => {
-    console.log("test");
     res.json(linesJSONFILE);
 })
 module.exports = router;

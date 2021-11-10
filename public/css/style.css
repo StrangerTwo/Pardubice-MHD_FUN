@@ -138,6 +138,7 @@ p {
     height: 12px;
 }
 .road {
+    width: 6px;
     background-color: red;
     position: absolute;
 }

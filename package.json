@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd ./server && nodemon server.js",
-    "scripts": "node ./scripts/places.js && node ./scripts/buslines.js && node ./scripts/timetables.js"
+    "scripts": "node ./scripts/places.js && node ./scripts/buslines.js"
   },
   "repository": {
     "type": "git",

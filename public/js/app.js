@@ -10,9 +10,7 @@ let timer;
 
 document.addEventListener("DOMContentLoaded", () => {
     const pce = new Pardubice(1.3);
-    setTimeout(() => {
-        pce.Render();
-    }, 3000);
+    pce.DownloadData().then(pce.Render());
     
     const sidebarToggle = document.querySelector("#sidebar .toggle-btn");
     sidebarToggle.addEventListener("click", () => {

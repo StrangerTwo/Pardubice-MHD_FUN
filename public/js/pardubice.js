@@ -16,6 +16,9 @@ class Pardubice {
         this.sizeCoeficient = sizeCoeficient;
 
         this.map = document.getElementById("pce-map");
+    }
+
+    async DownloadData() {
         this.fillInPlaces();
         this.fillInLines();
     }

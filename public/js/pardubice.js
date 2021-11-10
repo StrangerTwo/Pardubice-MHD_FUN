@@ -74,7 +74,7 @@ class Pardubice {
         })
 
 
-        for (busline of this.buslines) {
+        for (let busline of this.buslines) {
             this.renderBusline(busline);
         }
         this.linedraw(this.places.find(x => x.id == 1), this.places.find(x => x.id == 2))

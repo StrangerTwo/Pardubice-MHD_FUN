@@ -83,8 +83,13 @@ class Pardubice {
 
     renderBusline(busline) {
         for (let i = 1; i < busline.route.length; i++) {
-            this.linedraw(busline.route[i - 1], busline.route[i]);
+            console.log(busline.route[i])
+            this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]));
         }
+    }
+
+    getPlaceById(id) {
+        return this.places.find(x => x.id == id);
     }
 
     linedraw(a, b) {

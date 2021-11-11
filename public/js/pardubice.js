@@ -10,13 +10,13 @@ class Pardubice {
     width = 2339;
     height = 1654;
     map;
-    checked;
-    buslinesRender;
+    displayedBuslines;
+    renderedRoads;
 
     constructor(sizeCoeficient) {
         this.places = [];
-        this.checked = [];
-        this.buslinesRender = [];
+        this.displayedBuslines = [];
+        this.renderedRoads = [];
         this.sizeCoeficient = sizeCoeficient;
 
         this.map = document.getElementById("pce-map");
@@ -26,7 +26,7 @@ class Pardubice {
         await this.fillInPlaces();
         await this.fillInLines();
         this.buslines.forEach((busline) => {
-            this.checked.push(busline.number);
+            this.displayedBuslines.push(busline.number);
         })
         return true;
     }
@@ -86,18 +86,27 @@ class Pardubice {
         
         this.generateSideBar();
 
-        for (let busline of this.buslines) {
-            this.renderBusline(busline);
-        }
+        this.renderBuslines();
         
         return true;
     }
 
-    renderBusline(busline) {
-        if(this.buslinesRender.concat(busline.number)){
-            for (let i = 1; i < busline.route.length; i++) {
-                this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]));
+    renderBuslines() {
+        this.renderedRoads.forEach((road) => {
+            road.parentNode.removeChild(road);
+        });
+        this.renderedRoads = [];
+
+        for (let busline of this.buslines) {
+            if (this.displayedBuslines.includes(busline.number)) {
+                this.renderBusline(busline);
             }
+        }
+    }
+
+    renderBusline(busline) {
+        for (let i = 1; i < busline.route.length; i++) {
+            this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]));
         }
     }
 
@@ -136,7 +145,7 @@ class Pardubice {
 
         // this.map.innerHTML += "<div style='width:1px;background-color:black;position:absolute;top:" + (ay) + "px;left:" + (ax) + "px;transform:rotate(" + calc + "deg);-ms-transform:rotate(" + calc + "deg);transform-origin:0% 0%;-moz-transform:rotate(" + calc + "deg);-moz-transform-origin:0% 0%;-webkit-transform:rotate(" + calc + "deg);-webkit-transform-origin:0% 0%;-o-transform:rotate(" + calc + "deg);-o-transform-origin:0% 0%;'></div>"
         this.map.appendChild(line);
-        this.buslinesRender.push(line);
+        this.renderedRoads.push(line);
     }
 
     getPosition(place) {
@@ -157,23 +166,14 @@ class Pardubice {
             checkBox.checked = true;
             checkBox.addEventListener("change", () => {
                 if(checkBox.checked){
-                    this.checked.push(busline.number);
+                    this.displayedBuslines.push(busline.number);
                 }
                 else{
-                    let nbr = this.checked.indexOf(busline.number);
-                    this.checked.splice(nbr, 1);
+                    let nbr = this.displayedBuslines.indexOf(busline.number);
+                    this.displayedBuslines.splice(nbr, 1);
                 }
-                
-                this.buslinesRender.forEach((checkedElement) => {
-                    checkedElement.parentNode.removeChild(checkedElement);
-                    this.buslinesRender = [];
-                });
 
-                this.buslines.forEach((busline) => {
-                    if(this.checked.includes(busline.number))
-                        this.renderBusline(busline);
-                })
-
+                this.renderBuslines();
             });
             li.appendChild(checkBox);
 

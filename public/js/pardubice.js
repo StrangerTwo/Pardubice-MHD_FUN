@@ -164,6 +164,7 @@ class Pardubice {
             checkBox.id = "bus-" + busline.number;
             checkBox.value = busline.number;
             checkBox.checked = true;
+            checkBox.classList.add("form-check-input");
             checkBox.addEventListener("change", () => {
                 if(checkBox.checked){
                     this.displayedBuslines.push(busline.number);
@@ -180,6 +181,7 @@ class Pardubice {
             li.appendChild(document.createTextNode(" "));
 
             let label = document.createElement("label");
+            label.classList.add("form-check-label");
             label.htmlFor = "bus-" + busline.number;
             label.innerText = busline.number;
             li.appendChild(label);

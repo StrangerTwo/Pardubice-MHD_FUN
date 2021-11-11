@@ -3,8 +3,8 @@ class Pardubice {
     places;
     buslines;
     sizeCoeficient;
-    width = 2339;
-    height = 1654;
+    width = 3067;
+    height = 3500;
     map;
     displayedBuslines;
     renderedRoads;
@@ -28,7 +28,7 @@ class Pardubice {
     }
 
     async fillInLines() {
-        await fetch('api/getLines')
+        await fetch('/buslines.json')
             .then(response => response.json())
             .then(data => {
                 this.buslines = data;
@@ -36,7 +36,7 @@ class Pardubice {
     }
 
     async fillInPlaces() {
-        await fetch('api/getPlaces')
+        await fetch('/places.json')
             .then(response => response.json())
             .then(data => {
                 this.places = data;

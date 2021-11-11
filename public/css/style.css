@@ -67,7 +67,7 @@ ul.buslines {
 
 #pce-map {
     position: relative;
-    background-image: url(/mhd-pardubice.png);
+    background-image: url("/dpmp.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-color: rgba(255,255,255,0.6);

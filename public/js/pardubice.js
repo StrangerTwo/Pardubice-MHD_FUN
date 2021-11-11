@@ -228,14 +228,16 @@ class Pardubice {
                 }
             })
         })
-        li.innerHTML = `<p>Autobusy: `;
+
+        let p = document.createElement("p");
+        p.innerHTML = "Autobusy: "
         for (let i = 0; i < buses.length; i++) {
-            li.innerHTML += buses[i];
+            p.innerHTML += buses[i];
             if(i != buses.length - 1){
-                li.innerHTML += ", ";
+                p.innerHTML += ", ";
             }
         }
-        li.innerHTML += ` </p>`;
+        li.appendChild(p);
 
         li = document.createElement('li');
         ul.appendChild(li);

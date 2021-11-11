@@ -10,9 +10,13 @@ class Pardubice {
     width = 2339;
     height = 1654;
     map;
+    checked;
+    buslinesRender;
 
     constructor(sizeCoeficient) {
         this.places = [];
+        this.checked = [];
+        this.buslinesRender = [];
         this.sizeCoeficient = sizeCoeficient;
 
         this.map = document.getElementById("pce-map");
@@ -21,6 +25,9 @@ class Pardubice {
     async DownloadData() {
         await this.fillInPlaces();
         await this.fillInLines();
+        this.buslines.forEach((busline) => {
+            this.checked.push(busline.number);
+        })
         return true;
     }
 
@@ -82,13 +89,15 @@ class Pardubice {
         for (let busline of this.buslines) {
             this.renderBusline(busline);
         }
-        this.linedraw(this.places.find(x => x.id == 1), this.places.find(x => x.id == 2))
+        
         return true;
     }
 
     renderBusline(busline) {
-        for (let i = 1; i < busline.route.length; i++) {
-            this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]));
+        if(this.buslinesRender.concat(busline.number)){
+            for (let i = 1; i < busline.route.length; i++) {
+                this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]));
+            }
         }
     }
 
@@ -127,6 +136,7 @@ class Pardubice {
 
         // this.map.innerHTML += "<div style='width:1px;background-color:black;position:absolute;top:" + (ay) + "px;left:" + (ax) + "px;transform:rotate(" + calc + "deg);-ms-transform:rotate(" + calc + "deg);transform-origin:0% 0%;-moz-transform:rotate(" + calc + "deg);-moz-transform-origin:0% 0%;-webkit-transform:rotate(" + calc + "deg);-webkit-transform-origin:0% 0%;-o-transform:rotate(" + calc + "deg);-o-transform-origin:0% 0%;'></div>"
         this.map.appendChild(line);
+        this.buslinesRender.push(line);
     }
 
     getPosition(place) {
@@ -145,6 +155,26 @@ class Pardubice {
             checkBox.id = "bus-" + busline.number;
             checkBox.value = busline.number;
             checkBox.checked = true;
+            checkBox.addEventListener("change", () => {
+                if(checkBox.checked){
+                    this.checked.push(busline.number);
+                }
+                else{
+                    let nbr = this.checked.indexOf(busline.number);
+                    this.checked.splice(nbr, 1);
+                }
+                
+                this.buslinesRender.forEach((checkedElement) => {
+                    checkedElement.parentNode.removeChild(checkedElement);
+                    this.buslinesRender = [];
+                });
+
+                this.buslines.forEach((busline) => {
+                    if(this.checked.includes(busline.number))
+                        this.renderBusline(busline);
+                })
+
+            });
             li.appendChild(checkBox);
 
             li.appendChild(document.createTextNode(" "));

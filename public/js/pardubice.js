@@ -1,3 +1,5 @@
+import BusManager from './busManager.js';
+
 class Pardubice {
 
     places;
@@ -28,7 +30,7 @@ class Pardubice {
     }
 
     async fillInLines() {
-        await fetch('/buslines.json')
+        await fetch('/data/buslines.json')
             .then(response => response.json())
             .then(data => {
                 this.buslines = data;
@@ -36,7 +38,7 @@ class Pardubice {
     }
 
     async fillInPlaces() {
-        await fetch('/places.json')
+        await fetch('/data/places.json')
             .then(response => response.json())
             .then(data => {
                 this.places = data;

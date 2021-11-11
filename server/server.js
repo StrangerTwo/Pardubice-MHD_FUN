@@ -20,9 +20,3 @@ app.listen(port, () => {
 });
 
 app.use('/api', api);
-
-
-// app.post('/api/updatePlaces', (req, res) => {
-//   console.log('body :', req.body);
-//   fs.writeFileSync(__dirname + "/../public/places.json", req.body);
-// })

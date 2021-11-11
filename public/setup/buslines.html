@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplikace pro vizualizaci provozu městské hromadné dopravy Pardubic">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <title>Pardubice MHD</title>
+</head>
+<body>
+    <div id="page">
+        <div class="d-flex justify-content-between">
+            <div class="d-inline-block m-2">
+                <h1 class="d-inline">Pardubice MHD</h1>
+            </div>
+            <div class="d-inline-block m-2">
+                <input type="text" id="smer" value=""/>
+                <input type="number" id="number" value=""/>
+            </div>
+            <div class="d-inline-block m-2">
+                <button class="btn btn-primary" onClick="updatePlaces()">
+                    Uložit
+                </button>
+            </div>
+        </div>
+        <div class="layout">
+            <div id="pce-map" style="width: 3067px; height: 3500px; background-image: url(/dpmp.png)">
+                
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var places = [];
+        var buslines = [];
+        var activePlace;
+        var activeBusline;
+
+        function updatePlaces() {
+            console.log(JSON.stringify(buslines));
+        }
+
+        function renderPlace(place) {
+            let circle = document.createElement("div");
+            circle.classList.add("place");
+
+            if (place.name) {
+                circle.classList.add("bus-stop");
+            }
+
+            circle.style.left = place.x + "px";
+            circle.style.top = place.y + "px";
+
+            circle.onclick = () => {
+                if (activePlace) {
+                    linedraw(activePlace, place);
+                }
+
+                if (activeBusline) {
+                    activeBusline.route = [...activeBusline.route, place.id];
+                } else {
+                    if (busNumber.value && busSmer.value) {
+                        activeBusline = {
+                            name: busNumber.value,
+                            smer: busSmer.value,
+                            route: [place.id]
+                        };
+                        buslines = [...buslines, activeBusline];
+                    } else {
+                        return;
+                    }
+                }
+                activePlace = place;
+            }
+
+            map.appendChild(circle);
+        }
+
+        function renderBusline(busline) {
+            for (let i = 1; i < busline.route.length; i++) {
+                linedraw(places.find(x => x.id == busline.route[i-1]), places.find(x => x.id == busline.route[i]));
+            }
+        }
+
+        function linedraw(a, b) {
+            var length = Math.hypot(a.x - b.x, a.y - b.y);
+            var angle = Math.atan2(b.y-a.y, b.x-a.x) * 180 / Math.PI;
+
+            const line = document.createElement("div");
+            line.classList.add("road");
+            line.style.height = 4 + "px";
+            line.style.width = length + "px";
+            line.style.left = a.x + "px";
+            line.style.top = a.y + "px";
+            line.style.transform = "rotate(" + angle + "deg)";
+            line.style.transformOrigin = "left 50%";
+
+            map.appendChild(line);
+        }
+
+
+        const map = document.querySelector("#pce-map");
+        const busSmer = document.querySelector("#smer");
+        const busNumber = document.querySelector("#number");
+
+        busSmer.onchange = startNewBusline;
+        busNumber.onchange = startNewBusline;
+
+        function startNewBusline() {
+            activePlace = false;
+            activeBusline = false;
+
+            let existingBusline = buslines.find(x => x.number == busNumber.value && x.smer == busSmer.value);
+            if (existingBusline) {
+                activeBusline = existingBusline;
+                activePlace = places.find(x => x.id == activeBusline.route[activeBusline.route.length - 1]);
+            }
+
+            for(let element of map.querySelectorAll("div.road")) {
+                element.parentElement.removeChild(element);
+            }
+            
+            for(let busline of buslines.filter(x => x.number == busNumber.value && x.smer == busSmer.value)) {
+                renderBusline(busline);
+            }
+
+        }
+        
+        fetch('/places.json')
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    places = data;
+
+                    for (let place of places) {
+                        renderPlace(place);
+                    }
+                }
+            })
+        .then(() => {
+            fetch('/buslines.json')
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    buslines = data;
+                }
+            })
+        });
+    </script>
+</body>
+</html>

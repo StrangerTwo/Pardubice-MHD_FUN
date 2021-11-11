@@ -139,7 +139,6 @@ class Pardubice {
         line.style.transform = "rotate(" + calc + "deg) translate(-3px, -3px)";
         line.style.transformOrigin = "0 0";
 
-        // this.map.innerHTML += "<div style='width:1px;background-color:black;position:absolute;top:" + (ay) + "px;left:" + (ax) + "px;transform:rotate(" + calc + "deg);-ms-transform:rotate(" + calc + "deg);transform-origin:0% 0%;-moz-transform:rotate(" + calc + "deg);-moz-transform-origin:0% 0%;-webkit-transform:rotate(" + calc + "deg);-webkit-transform-origin:0% 0%;-o-transform:rotate(" + calc + "deg);-o-transform-origin:0% 0%;'></div>"
         this.map.appendChild(line);
         this.renderedRoads.push(line);
     }

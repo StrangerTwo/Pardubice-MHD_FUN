@@ -107,6 +107,17 @@
         busSmer.onchange = startNewBusline;
         busNumber.onchange = startNewBusline;
 
+        map.onmousedown = (e) => {
+            if (e.which != 3) return;
+
+            if (activePlace) {
+                activeBusline.route.splice(-1,1);
+                activePlace = places.find(x => x.id == activeBusline.route[activeBusline.route.length - 1]);
+
+                map.removeChild(map.lastChild);
+            }
+        };
+
         function startNewBusline() {
             activePlace = false;
             activeBusline = false;

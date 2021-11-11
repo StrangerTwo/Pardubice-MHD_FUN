@@ -4,6 +4,6 @@
 
 Členové týmu
 
-* <u>Jan Volhejn</u>
+* **Jan Volhejn**
 * Jakub Kacálek
 * Martin Bíško

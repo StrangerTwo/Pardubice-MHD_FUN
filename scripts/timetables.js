@@ -3,7 +3,7 @@ const fs = require('fs');
 
 
 
-async function getTimeTable(page, smer, busNumber, link) {
+async function getTimeTable(page, busNumber, smer, link) {
     await page.goto(link);
     await page.waitForSelector('div.times')
     

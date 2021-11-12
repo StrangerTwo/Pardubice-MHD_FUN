@@ -145,3 +145,6 @@ p {
     position: absolute;
     user-select: none;
 }
+.bus{
+    position: absolute;
+}

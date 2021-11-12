@@ -2,6 +2,7 @@ import BusManager from './busManager.js';
 
 class Pardubice {
 
+    busManager;
     places;
     buslines;
     sizeCoeficient;
@@ -9,22 +10,26 @@ class Pardubice {
     height = 3500;
     map;
     displayedBuslines;
-    renderedRoads;
 
     constructor(sizeCoeficient) {
-        this.places = [];
         this.displayedBuslines = [];
-        this.renderedRoads = [];
         this.sizeCoeficient = sizeCoeficient;
+        this.displayedBuslines = [];
 
         this.map = document.getElementById("pce-map");
+
+        this.busManager = new BusManager(sizeCoeficient, this.displayedBuslines);
+        this.busManager.DownloadData()
+            .then(() => {
+                setInterval(() => this.busManager.Render(), 1000);
+            })
     }
 
     async DownloadData() {
         await this.fillInPlaces();
         await this.fillInLines();
         this.buslines.forEach((busline) => {
-            this.displayedBuslines.push(busline.number);
+            this.displayedBuslines.push(busline);
         })
         return true;
     }
@@ -90,15 +95,12 @@ class Pardubice {
     }
 
     renderBuslines() {
-        this.renderedRoads.forEach((road) => {
+        this.map.querySelectorAll("div.road").forEach((road) => {
             road.parentNode.removeChild(road);
         });
-        this.renderedRoads = [];
 
-        for (let busline of this.buslines) {
-            if (this.displayedBuslines.includes(busline.number)) {
-                this.renderBusline(busline);
-            }
+        for (let busline of this.displayedBuslines) {
+            this.renderBusline(busline);
         }
     }
 
@@ -113,36 +115,22 @@ class Pardubice {
     }
 
     linedraw(a, b) {
-        var [ ax, ay ] = this.getPosition(a);
-        var [ bx, by ] = this.getPosition(b);
+        var [ax, ay] = this.getPosition(a);
+        var [bx, by] = this.getPosition(b);
 
-        var calc = Math.atan(Math.abs(ay - by) / Math.abs(bx - ax));
-        calc = calc * 180 / Math.PI - 90;
-        var length = Math.sqrt((ax - bx) * (ax - bx) + (ay - by) * (ay - by));
-
-        if (bx < ax) {
-            calc = 360 - calc;
-        }
-        else if (by < ay) {
-            calc = 360 - calc;
-            let prom = ax;
-            ax = bx;
-            bx = prom;
-            prom = ay;
-            ay = by;
-            by = prom;
-        }
+        var length = Math.hypot(ax - bx, ay - by);
+        var angle = Math.atan2(by-ay, bx-ax) * 180 / Math.PI;
 
         const line = document.createElement("div");
         line.classList.add("road");
-        line.style.height = length + "px";
-        line.style.top = ay + "px";
+        line.style.height = 4 + "px";
+        line.style.width = length + "px";
         line.style.left = ax + "px";
-        line.style.transform = "rotate(" + calc + "deg) translate(-3px, -3px)";
-        line.style.transformOrigin = "0 0";
+        line.style.top = ay + "px";
+        line.style.transform = "rotate(" + angle + "deg)";
+        line.style.transformOrigin = "left 50%";
 
         this.map.appendChild(line);
-        this.renderedRoads.push(line);
     }
 
     getPosition(place) {
@@ -158,16 +146,16 @@ class Pardubice {
             let checkBox = document.createElement("input");
             checkBox.type = "checkbox";
             checkBox.name = "buslines";
-            checkBox.id = "bus-" + busline.number;
-            checkBox.value = busline.number;
+            checkBox.id = "bus-" + busline.number + busline.smer;
+            checkBox.value = busline.number + busline.smer;
             checkBox.checked = true;
             checkBox.classList.add("form-check-input");
             checkBox.addEventListener("change", () => {
                 if(checkBox.checked){
-                    this.displayedBuslines.push(busline.number);
+                    this.displayedBuslines.push(busline);
                 }
                 else{
-                    let nbr = this.displayedBuslines.indexOf(busline.number);
+                    let nbr = this.displayedBuslines.indexOf(busline);
                     this.displayedBuslines.splice(nbr, 1);
                 }
 
@@ -179,8 +167,8 @@ class Pardubice {
 
             let label = document.createElement("label");
             label.classList.add("form-check-label");
-            label.htmlFor = "bus-" + busline.number;
-            label.innerText = busline.number;
+            label.htmlFor = "bus-" + busline.number + busline.smer;
+            label.innerText = busline.number + " " + busline.smer;
             li.appendChild(label);
         });
     }

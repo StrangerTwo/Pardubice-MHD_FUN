@@ -105,8 +105,11 @@ class Pardubice {
     }
 
     renderBusline(busline) {
+        const colors = ["#FF0000", "#00FF00", "#0000FF"];
+        const busIndex = this.buslines.findIndex(x => x.number == busline.number && x.smer == busline.smer);
+
         for (let i = 1; i < busline.route.length; i++) {
-            this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]));
+            this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]), colors[busIndex]);
         }
     }
 
@@ -114,7 +117,7 @@ class Pardubice {
         return this.places.find(x => x.id == id);
     }
 
-    linedraw(a, b) {
+    linedraw(a, b, color) {
         var [ax, ay] = this.getPosition(a);
         var [bx, by] = this.getPosition(b);
 
@@ -129,6 +132,7 @@ class Pardubice {
         line.style.top = ay + "px";
         line.style.transform = "rotate(" + angle + "deg)";
         line.style.transformOrigin = "left 50%";
+        line.style.backgroundColor = color;
 
         this.map.appendChild(line);
     }

@@ -9,7 +9,7 @@ if('serviceWorker' in navigator){
 let timer;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const pce = new Pardubice(1.3);
+    const pce = new Pardubice(0.7);
     await pce.DownloadData();
     pce.Render();
     

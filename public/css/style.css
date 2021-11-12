@@ -94,6 +94,7 @@ ul.buslines {
     border: 1px solid #252526;
     padding: 3px 0 0;
     width: max-content;
+    font-size: 11px;
 }
 
 .bus-stop-detail > ul{

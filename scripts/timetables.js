@@ -33,10 +33,6 @@ async function getTimeTable(page, busNumber, smer, link) {
         }
         return [times, delayes];
     })
-    
-    if (busNumber == 2 && smer == "A") {
-        console.log(delayes)
-    }
 
     return {
         number: busNumber,

@@ -194,12 +194,7 @@ class Pardubice {
         ul.appendChild(li);
 
         // li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p><p>ID : ${place.id}</p>`
-        let buses = [];
-        this.buslines.forEach((busline) => {
-            if (busline.route.includes(place.id)) {
-                buses.push(busline.number);
-            } 
-        })
+        let buses = [...new Set(this.buslines.filter(x => x.route.includes(place.id)).map(x => x.number))]
 
         let p = document.createElement("p");
         p.innerHTML = "Autobusy: " + buses.join(", ");

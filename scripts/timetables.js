@@ -25,13 +25,18 @@ async function getTimeTable(page, busNumber, smer, link) {
 
         for(let row of rows) {
             let stopname = row.querySelector("th:nth-child(1)").innerText;
-            if (!stopname.charAt(0) != '*') {
-                valuesCell = row.querySelector("td:nth-child(3)");
-                delayes.push(valuesCell.innerText);
-            }
+            
+            if (stopname.charAt(0) == '*') continue;
+
+            valuesCell = row.querySelector("td:nth-child(3)");
+            delayes.push(valuesCell.innerText);
         }
         return [times, delayes];
     })
+    
+    if (busNumber == 2 && smer == "A") {
+        console.log(delayes)
+    }
 
     return {
         number: busNumber,

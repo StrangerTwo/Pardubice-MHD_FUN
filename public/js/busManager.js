@@ -46,7 +46,7 @@ export default class BusManager {
                     usedBuses++;
                 }
             }
-        }else
+        } else
             console.error(`Chybějící timetable pro number: ${busline.number} a smer: ${busline.smer}`);
 
         return usedBuses;
@@ -68,14 +68,14 @@ export default class BusManager {
             if (currentTime >= stopTimes[i]) {
                 // currentTime should be between stopTimes[i] and stopTimes[i+1]
 
-                var ratio = (currentTime - stopTimes[i]) / (stopTimes[i+1] - stopTimes[i])
+                var ratio = (currentTime - stopTimes[i]) / (stopTimes[i + 1] - stopTimes[i])
                 var busStopRoute = this.getRouteBetweenBusstopsIndexes(i, i + 1, busline.route);
                 // console.log(busline.route.map(x => this.places.find(y => y.id == x)));
                 // console.log(`Start ${i} konec ${i + 1}`)
                 // console.log(busStopRoute);
                 if (busStopRoute) {
                     this.renderBusOnRoute(ratio, busStopRoute, element, busline, stopTimes[0]);
-                }else
+                } else
                     console.error(`Problém při hledání trasy od ${i} ${i + 1} na trase ${busline.number} ${busline.smer}`)
 
                 break;
@@ -88,7 +88,7 @@ export default class BusManager {
 
         for (var i = 1; i < route.length; i++) {
             let [ax, ay] = this.getPosition(route[i]);
-            let [bx, by] = this.getPosition(route[i-1]);
+            let [bx, by] = this.getPosition(route[i - 1]);
 
             length += Math.hypot(ax - bx, ay - by);
         }
@@ -98,7 +98,7 @@ export default class BusManager {
 
         for (var i = 1; i < route.length; i++) {
             let [ax, ay] = this.getPosition(route[i]);
-            let [bx, by] = this.getPosition(route[i-1]);
+            let [bx, by] = this.getPosition(route[i - 1]);
 
             let distanceBetween = Math.hypot(ax - bx, ay - by);
             if (distanceFromStop - distanceBetween < 0) {
@@ -115,8 +115,8 @@ export default class BusManager {
             let [bx, by] = this.getPosition(placeTo);
 
             var length = Math.hypot(ax - bx, ay - by) * ratioFromPlace;
-            var angle = Math.atan2(by-ay, bx-ax) * 180 / Math.PI;
-    
+            var angle = Math.atan2(by - ay, bx - ax) * 180 / Math.PI;
+
             // var bus = document.createElement("div");
             // bus.classList.add("bus");
             // bus.style.height = 10 + "px";
@@ -128,7 +128,7 @@ export default class BusManager {
             // bus.style.position = "absolute";
             // // bus.style.backgroundImage = "url('/bus.png')";
             // bus.style.backgroundColor = "green";
-            
+
             // // this.map.parentElement.appendChild(bus);
 
             bus.classList.add("bus");
@@ -142,18 +142,18 @@ export default class BusManager {
             bus.setAttribute("transform", "translate(-10, -5)");
             // TODO: fix rotate
             // bus.setAttribute(`transform", "translate(-10, -5) rotate(${angle})`);
-            
+
             // bus.transformOrigin = "left 50%";
 
             bus.addEventListener("mouseover", (e) => {
-                this.createDetail(e.target, busline, placeFrom, route[0], route[route.length - 1], startTime);
+                this.createDetail(e.target, busline, route[0], route[route.length - 1], startTime);
             });
 
             // bus.style.backgroundImage = "url('/bus.png')";
 
             // console.log(`Zobrazen autobus na trase mezi ${route[0].name} a ${route[route.length - 1].name}`);
-    
-        }else{
+
+        } else {
             console.error(`Nenalezena pozice autobusu vzdálenost ${distanceFromStop} trasa: ${route.length}`);
         }
     }
@@ -161,32 +161,33 @@ export default class BusManager {
     getRouteBetweenBusstopsIndexes(startIndex, stopIndex, route) {
         var routePlaces = [];
 
-        var busStopIndex = 0;
+        var busStopIndex = -1;
+        var stopFound = false;
 
         for (let i = 0; i < route.length; i++) {
             let place = this.places.find(x => x.id == route[i]);
             if (place) {
                 if (place.name) { // Jedná se o zastávku
+                    busStopIndex += 1;
                     if (busStopIndex >= startIndex) {
                         routePlaces.push(place);
+
+                        if (stopFound) return routePlaces;
+                        else stopFound = true;
                     }
-                    if (busStopIndex == stopIndex) {
-                        return routePlaces;
-                    }
-                    busStopIndex += 1;
-                }else{
-                    if (busStopIndex >= startIndex) {
+                } else {
+                    if (stopFound) {
                         routePlaces.push(place);
                     }
                 }
 
-            }else
+            } else
                 console.error(`Chybějící place pro id: ${route[i]}`);
         }
 
         return false;
     }
-    
+
     getPosition(place) {
         return [place.x * this.sizeCoeficient, place.y * this.sizeCoeficient];
     }
@@ -224,7 +225,9 @@ export default class BusManager {
 
         li = document.createElement('li');
         ul.appendChild(li);
-        li.innerHTML = `Vyjel v ${Math.floor(startTime / 60)}:${startTime - Math.floor(startTime / 60) * 60}`;
+
+        var startDate = new Date(0, 0, 0, 0, 0, startTime);
+        li.innerHTML = `Z ${this.places.find(p => p.id == busline.route[0]).name} vyjel v ${startDate.getHours()}:${startDate.getMinutes()}`;
 
         detail.style.left = target.getAttribute("x") + "px";
         detail.style.top = target.getAttribute("y") + "px";
@@ -257,10 +260,10 @@ export default class BusManager {
     async DownloadData() {
         await this.fillInPlaces();
         await this.fillInTimetables();
-        
+
         return true;
     }
-    
+
     async fillInPlaces() {
         await fetch('/data/places.json')
             .then(response => response.json())
@@ -268,7 +271,7 @@ export default class BusManager {
                 this.places = data;
             })
     }
-    
+
     async fillInTimetables() {
         await fetch('/data/timetables.json')
             .then(response => response.json())

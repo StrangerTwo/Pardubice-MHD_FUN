@@ -120,20 +120,51 @@ p {
     margin: 0;
 }
 
-.place {
+circle.place {
     r: 3;
 }
-.bus-stop {
+circle.bus-stop {
     r: 5;
 }
-.place:hover {
+circle.place:hover {
     r: 5;
 }
-.bus-stop:hover {
+circle.bus-stop:hover {
     r: 8;
 }
 
-.road {
+line.road {
     stroke-width: 4;
     user-select: none;
+}
+
+div.place {
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+div.place:hover {
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+div.place:not(:empty) {
+    z-index: 10;
+}
+div.bus-stop {
+    width: 12px;
+    height: 12px;
+}
+div.road {
+    width: 6px;
+    background-color: red;
+    position: absolute;
+    user-select: none;
+}
+div.bus{
+    position: absolute;
 }

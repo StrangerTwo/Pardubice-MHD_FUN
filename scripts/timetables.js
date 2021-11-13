@@ -24,8 +24,11 @@ async function getTimeTable(page, busNumber, smer, link) {
         var delayes = [];
 
         for(let row of rows) {
-            valuesCell = row.querySelector("td:nth-child(3)");
-            delayes.push(valuesCell.innerText);
+            let stopname = row.querySelector("th:nth-child(1)").innerText;
+            if (!stopname.charAt(0) != '*') {
+                valuesCell = row.querySelector("td:nth-child(3)");
+                delayes.push(valuesCell.innerText);
+            }
         }
         return [times, delayes];
     })
@@ -101,7 +104,7 @@ async function run() {
     await browser.close();
 
     const timetablesJson = JSON.stringify(timetables);
-    fs.writeFile(__dirname + "/../server/files/timetables.json", timetablesJson, (err) => {
+    fs.writeFile(__dirname + "/../public/data/timetables.json", timetablesJson, (err) => {
         if(err) {
             return console.log(err);
         }

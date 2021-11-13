@@ -13,16 +13,19 @@ export default class BusManager {
     }
 
     Render() {
-        this.map.parentElement.querySelectorAll(".bus").forEach((element) => {
+        const buses = Array.from(this.map.parentElement.querySelectorAll(".bus"));
+        var usedBuses = 0;
+        for (let busline of this.buslines) {
+            usedBuses += this.renderBusline(busline, buses.filter((x, i) => i >= usedBuses));
+        }
+        buses.filter((x, i) => i >= usedBuses).forEach(element => {
             element.parentElement.removeChild(element);
         })
-        for (let busline of this.buslines) {
-            this.renderBusline(busline);
-        }
     }
 
-    renderBusline(busline) {
+    renderBusline(busline, buses) {
         const timetable = this.timetables.find(x => x.number == busline.number && x.smer == busline.smer);
+        var usedBuses = 0;
         if (timetable) {
             var date = new Date();
             var currentTime = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
@@ -34,14 +37,22 @@ export default class BusManager {
                 var endTime = startTime + timetable.delayes[timetable.delayes.length - 1] * 60;
 
                 if (currentTime > startTime && currentTime < endTime) {
-                    this.renderBus(busline, currentTime, timetable.delayes.map(x => startTime + x * 60));
+                    var bus = buses[usedBuses];
+                    if (!bus) {
+                        bus = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                        this.map.appendChild(bus);
+                    }
+                    this.renderBus(busline, currentTime, timetable.delayes.map(x => startTime + x * 60), bus);
+                    usedBuses++;
                 }
             }
         }else
             console.error(`Chybějící timetable pro number: ${busline.number} a smer: ${busline.smer}`);
+
+        return usedBuses;
     }
 
-    renderBus(busline, currentTime, stopTimes) {
+    renderBus(busline, currentTime, stopTimes, element) {
         // startTime => busline.route[0];
         // startTime + delayes[i] => busline.route[i + 1];
 
@@ -63,7 +74,7 @@ export default class BusManager {
                 // console.log(`Start ${i} konec ${i + 1}`)
                 // console.log(busStopRoute);
                 if (busStopRoute) {
-                    this.renderBusOnRoute(ratio, busStopRoute, busline, stopTimes[0]);
+                    this.renderBusOnRoute(ratio, busStopRoute, element, busline, stopTimes[0]);
                 }else
                     console.error(`Problém při hledání trasy od ${i} ${i + 1} na trase ${busline.number} ${busline.smer}`)
 
@@ -72,7 +83,7 @@ export default class BusManager {
         }
     }
 
-    renderBusOnRoute(ratio, route, busline, startTime) {
+    renderBusOnRoute(ratio, route, bus, busline, startTime) {
         var length = 0;
 
         for (var i = 1; i < route.length; i++) {
@@ -120,7 +131,6 @@ export default class BusManager {
             
             // // this.map.parentElement.appendChild(bus);
 
-            var bus = document.createElementNS("http://www.w3.org/2000/svg", "rect");
             bus.classList.add("bus");
             bus.setAttribute("height", 10);
             bus.setAttribute("width", 20);
@@ -135,14 +145,10 @@ export default class BusManager {
             
             // bus.transformOrigin = "left 50%";
 
-            this.map.appendChild(bus);
+            bus.addEventListener("mouseover", (e) => {
+                this.createDetail(e.target, busline, placeFrom, route[0], route[route.length - 1], startTime);
+            });
 
-
-
-
-            // bus.addEventListener("mouseover", (e) => {
-            //     this.createDetail(e.target, busline, placeFrom, route[0], route[route.length - 1], startTime);
-            // });
             // bus.style.backgroundImage = "url('/bus.png')";
 
             // console.log(`Zobrazen autobus na trase mezi ${route[0].name} a ${route[route.length - 1].name}`);
@@ -186,8 +192,10 @@ export default class BusManager {
     }
 
     removeDetail(detail) {
-        detail.element.parentElement.removeChild(detail.element);
-        return true;
+        if (detail) {
+            detail.parentElement.removeChild(detail);
+            return true;
+        }
     }
 
     createDetail(target, busline, stopFrom, stopTo, startTime) {
@@ -205,7 +213,7 @@ export default class BusManager {
 
         let li = document.createElement("li");
         ul.appendChild(li);
-        li.innerHTML = `Autobus číslo ${busline.number}`;
+        li.innerHTML = `Autobus číslo ${busline.number}, směr: ${busline.smer}`;
 
         li = document.createElement("li");
         ul.appendChild(li);

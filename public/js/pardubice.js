@@ -52,12 +52,13 @@ class Pardubice {
 
     Render() {
         if (this.places.length == 0) { return false };
-        // console.log(this.places.length)
-        this.map.style.width = this.width * this.sizeCoeficient + "px";
-        this.map.style.height = this.height * this.sizeCoeficient + "px";
+        this.map.setAttribute("width", this.width * this.sizeCoeficient);
+        this.map.setAttribute("height", this.height * this.sizeCoeficient);
+
+        const svgns = "http://www.w3.org/2000/svg";
 
         this.places.forEach((place) => {
-            let circle = document.createElement("div");
+            let circle = document.createElementNS(svgns, "circle");
             circle.classList.add("place");
 
             if (place.name) {
@@ -65,24 +66,19 @@ class Pardubice {
                 circle.addEventListener("mouseover", (e) => {
                     this.createDetail(e.target, place);
                 });
-                circle.addEventListener("mouseleave", (e) => {
-                    this.removeDetail();
-                });
             }
             else {
                 // TODO: Remove
-                circle.addEventListener("mouseover", (e) => {
-                    this.createDetail(e.target, place);
-                });
-                circle.addEventListener("mouseleave", (e) => {
-                    this.removeDetail();
-                });
+                // circle.addEventListener("mouseover", (e) => {
+                //     this.createDetail(e.target, place);
+                // });
             }
 
             const [x, y] = this.getPosition(place);
 
-            circle.style.left = x + "px";
-            circle.style.top = y + "px";
+            circle.setAttribute("cx", x);
+            circle.setAttribute("cy", y);
+            circle.setAttribute("fill", "red");
 
             this.map.appendChild(circle);
         })
@@ -118,21 +114,16 @@ class Pardubice {
     }
 
     linedraw(a, b, color) {
-        var [ax, ay] = this.getPosition(a);
-        var [bx, by] = this.getPosition(b);
+        var [ ax, ay ] = this.getPosition(a);
+        var [ bx, by ] = this.getPosition(b);
 
-        var length = Math.hypot(ax - bx, ay - by);
-        var angle = Math.atan2(by-ay, bx-ax) * 180 / Math.PI;
-
-        const line = document.createElement("div");
-        line.classList.add("road");
-        line.style.height = 4 + "px";
-        line.style.width = length + "px";
-        line.style.left = ax + "px";
-        line.style.top = ay + "px";
-        line.style.transform = "rotate(" + angle + "deg)";
-        line.style.transformOrigin = "left 50%";
-        line.style.backgroundColor = color;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.classList.add("road")
+        line.setAttribute("x1", ax);
+        line.setAttribute("y1", ay);
+        line.setAttribute("x2", bx);
+        line.setAttribute("y2", by);
+        line.setAttribute("stroke", color);
 
         this.map.appendChild(line);
     }
@@ -177,25 +168,20 @@ class Pardubice {
         });
     }
 
-    detailDiv;
-
-    removeDetail() {
-        if (this.detailDiv) {
-            this.detailDiv.parentNode.removeChild(this.detailDiv);
-            this.detailDiv = null;
-        }
+    removeDetail(detail) {
+        detail.parentElement.removeChild(detail);
+        return true;
     }
 
     createDetail(target, place) {
         if (!target.classList.contains("place")) return;
-        this.removeDetail();
 
-        this.detailDiv = document.createElement("div");
-        this.detailDiv.classList.add("bus-stop-detail-watermark");
+        const detail = document.createElement("div");
+        detail.classList.add("bus-stop-detail-watermark");
 
         const detailValues = document.createElement("div");
         detailValues.classList.add("bus-stop-detail");
-        this.detailDiv.appendChild(detailValues);
+        detail.appendChild(detailValues);
 
         const ul = document.createElement("ul");
         detailValues.appendChild(ul);
@@ -209,34 +195,48 @@ class Pardubice {
 
         // li.innerHTML = `<p>Autobusy:</p><p>1, 2, 3, 4, 5</p><p>ID : ${place.id}</p>`
         let buses = [];
-        this.buslines.forEach((buslines) => {
-            buslines.route.forEach((buslinePlace) => {
-                if(buslinePlace == place.id){
-                    if(!buses.includes(buslines.number))
-                        buses.push(buslines.number);
-                }
-            })
+        this.buslines.forEach((busline) => {
+            if (busline.route.includes(place.id)) {
+                buses.push(busline.number);
+            } 
         })
 
         let p = document.createElement("p");
-        p.innerHTML = "Autobusy: "
-        for (let i = 0; i < buses.length; i++) {
-            p.innerHTML += buses[i];
-            if(i != buses.length - 1){
-                p.innerHTML += ", ";
-            }
-        }
+        p.innerHTML = "Autobusy: " + buses.join(", ");
         li.appendChild(p);
 
         li = document.createElement('li');
         ul.appendChild(li);
         li.innerHTML = `ID : ${place.id}`;
 
-        target.appendChild(this.detailDiv);
+        const [x, y] = this.getPosition(place);
 
-        if (parseInt(target.style.left, 10) + this.detailDiv.offsetWidth > this.width * this.sizeCoeficient) {
-            this.detailDiv.classList.add("option-left");
+        detail.style.top = y + "px";
+        detail.style.left = x + "px";
+        this.map.parentElement.appendChild(detail);
+
+        if (parseInt(x, 10) + detail.offsetWidth > this.width * this.sizeCoeficient) {
+            detail.classList.add("option-left");
         }
+
+        var detailTimer = setTimeout(() => {
+            if (this.removeDetail(detail)) {
+                clearInterval(detailTimer);
+            }
+        }, 750);
+
+        detailValues.onmouseleave = () => {
+            detailTimer = setTimeout(() => {
+                if (this.removeDetail(detail)) {
+                    clearInterval(detailTimer);
+                }
+            }, 750);
+        };
+        detailValues.onmouseenter = () => {
+            clearTimeout(detailTimer);
+        }
+
+        return detail;
     }
 }
 

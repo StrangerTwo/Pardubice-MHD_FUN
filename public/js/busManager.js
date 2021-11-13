@@ -13,7 +13,7 @@ export default class BusManager {
     }
 
     Render() {
-        this.map.querySelectorAll(".bus").forEach((element) => {
+        this.map.parentElement.querySelectorAll(".bus").forEach((element) => {
             element.parentElement.removeChild(element);
         })
         for (let busline of this.buslines) {
@@ -63,7 +63,7 @@ export default class BusManager {
                 // console.log(`Start ${i} konec ${i + 1}`)
                 // console.log(busStopRoute);
                 if (busStopRoute) {
-                    this.renderBusOnRoute(ratio, busStopRoute);
+                    this.renderBusOnRoute(ratio, busStopRoute, busline, stopTimes[0]);
                 }else
                     console.error(`Problém při hledání trasy od ${i} ${i + 1} na trase ${busline.number} ${busline.smer}`)
 
@@ -72,7 +72,7 @@ export default class BusManager {
         }
     }
 
-    renderBusOnRoute(ratio, route) {
+    renderBusOnRoute(ratio, route, busline, startTime) {
         var length = 0;
 
         for (var i = 1; i < route.length; i++) {
@@ -106,20 +106,47 @@ export default class BusManager {
             var length = Math.hypot(ax - bx, ay - by) * ratioFromPlace;
             var angle = Math.atan2(by-ay, bx-ax) * 180 / Math.PI;
     
-            const bus = document.createElement("div");
+            // var bus = document.createElement("div");
+            // bus.classList.add("bus");
+            // bus.style.height = 10 + "px";
+            // bus.style.width = 20 + "px";
+            // bus.style.left = (ax + (bx - ax) * ratioFromPlace) + "px";
+            // bus.style.top = (ay + (by - ay) * ratioFromPlace) + "px";
+            // // bus.style.transform = "rotate(" + angle + "deg)";
+            // // bus.style.transformOrigin = "left 50%";
+            // bus.style.position = "absolute";
+            // // bus.style.backgroundImage = "url('/bus.png')";
+            // bus.style.backgroundColor = "green";
+            
+            // // this.map.parentElement.appendChild(bus);
+
+            var bus = document.createElementNS("http://www.w3.org/2000/svg", "rect");
             bus.classList.add("bus");
-            bus.style.height = 10 + "px";
-            bus.style.width = 20 + "px";
-            bus.style.left = (ax + (bx - ax) * ratioFromPlace) + "px";
-            bus.style.top = (ay + (by - ay) * ratioFromPlace) + "px";
-            bus.style.transform = "rotate(" + angle + "deg)";
-            bus.style.transformOrigin = "left 50%";
+            bus.setAttribute("height", 10);
+            bus.setAttribute("width", 20);
+            bus.setAttribute("x", ax + (bx - ax) * ratioFromPlace)
+            bus.setAttribute("y", ay + (by - ay) * ratioFromPlace)
+            bus.setAttribute("fill", "green");
+            bus.setAttribute("transform-box", "fill-box");
+            bus.setAttribute("transform-origin", "center");
+            bus.setAttribute("transform", "translate(-10, -5)");
+            // TODO: fix rotate
+            // bus.setAttribute(`transform", "translate(-10, -5) rotate(${angle})`);
+            
+            // bus.transformOrigin = "left 50%";
+
+            this.map.appendChild(bus);
+
+
+
+
+            // bus.addEventListener("mouseover", (e) => {
+            //     this.createDetail(e.target, busline, placeFrom, route[0], route[route.length - 1], startTime);
+            // });
             // bus.style.backgroundImage = "url('/bus.png')";
-            bus.style.backgroundColor = "green";
 
             // console.log(`Zobrazen autobus na trase mezi ${route[0].name} a ${route[route.length - 1].name}`);
     
-            this.map.appendChild(bus);
         }else{
             console.error(`Nenalezena pozice autobusu vzdálenost ${distanceFromStop} trasa: ${route.length}`);
         }
@@ -156,6 +183,67 @@ export default class BusManager {
     
     getPosition(place) {
         return [place.x * this.sizeCoeficient, place.y * this.sizeCoeficient];
+    }
+
+    removeDetail(detail) {
+        detail.element.parentElement.removeChild(detail.element);
+        return true;
+    }
+
+    createDetail(target, busline, stopFrom, stopTo, startTime) {
+        if (!target.classList.contains("bus")) return;
+
+        const detail = document.createElement("div");
+        detail.classList.add("bus-stop-detail-watermark");
+
+        const detailValues = document.createElement("div");
+        detailValues.classList.add("bus-stop-detail");
+        detail.appendChild(detailValues);
+
+        const ul = document.createElement("ul");
+        detailValues.appendChild(ul);
+
+        let li = document.createElement("li");
+        ul.appendChild(li);
+        li.innerHTML = `Autobus číslo ${busline.number}`;
+
+        li = document.createElement("li");
+        ul.appendChild(li);
+
+        let p = document.createElement("p");
+        p.innerHTML = `Na cestě z ${stopFrom.name} do ${stopTo.name}`;
+        li.appendChild(p);
+
+        li = document.createElement('li');
+        ul.appendChild(li);
+        li.innerHTML = `Vyjel v ${Math.floor(startTime / 60)}:${startTime - Math.floor(startTime / 60) * 60}`;
+
+        detail.style.left = target.getAttribute("x") + "px";
+        detail.style.top = target.getAttribute("y") + "px";
+        this.map.parentElement.appendChild(detail);
+
+        if (parseInt(target.getAttribute("x"), 10) + detail.offsetWidth > this.width * this.sizeCoeficient) {
+            detail.classList.add("option-left");
+        }
+
+        var detailTimer = setTimeout(() => {
+            if (this.removeDetail(detail)) {
+                clearInterval(detailTimer);
+            }
+        }, 750);
+
+        detailValues.onmouseleave = () => {
+            detailTimer = setTimeout(() => {
+                if (this.removeDetail(detail)) {
+                    clearInterval(detailTimer);
+                }
+            }, 750);
+        };
+        detailValues.onmouseenter = () => {
+            clearTimeout(detailTimer);
+        }
+
+        return detail;
     }
 
     async DownloadData() {

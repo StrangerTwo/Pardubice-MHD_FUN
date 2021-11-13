@@ -61,6 +61,7 @@ ul.buslines {
 }
 
 .layout {
+    position: relative;
     overflow: scroll;
     flex-grow: 1;
 }
@@ -120,32 +121,19 @@ p {
 }
 
 .place {
-    width: 6px;
-    height: 6px;
-    background-color: red;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    position: absolute;
-    z-index: 1;
-}
-
-.place:hover {
-    transform: translate(-50%, -50%) scale(1.5);
-}
-
-.place:not(:empty) {
-    z-index: 10;
+    r: 3;
 }
 .bus-stop {
-    width: 12px;
-    height: 12px;
+    r: 5;
 }
+.place:hover {
+    r: 5;
+}
+.bus-stop:hover {
+    r: 8;
+}
+
 .road {
-    width: 6px;
-    background-color: red;
-    position: absolute;
+    stroke-width: 4;
     user-select: none;
-}
-.bus{
-    position: absolute;
 }

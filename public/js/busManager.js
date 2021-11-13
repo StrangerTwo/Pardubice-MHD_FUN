@@ -4,12 +4,14 @@ export default class BusManager {
     buslines;
     timetables;
     map;
+    busesGroup;
 
     constructor(sizeCoeficient, buslines) {
         this.buslines = buslines;
 
         this.sizeCoeficient = sizeCoeficient;
         this.map = document.getElementById("pce-map");
+        this.busesGroup = this.map.querySelector("#buses");
     }
 
     Render() {
@@ -40,7 +42,7 @@ export default class BusManager {
                     var bus = buses[usedBuses];
                     if (!bus) {
                         bus = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-                        this.map.appendChild(bus);
+                        this.busesGroup.appendChild(bus);
                     }
                     this.renderBus(busline, currentTime, timetable.delayes.map(x => startTime + x * 60), bus);
                     usedBuses++;
@@ -76,7 +78,7 @@ export default class BusManager {
                 if (busStopRoute) {
                     this.renderBusOnRoute(ratio, busStopRoute, element, busline, stopTimes[0]);
                 } else
-                    console.error(`Problém při hledání trasy od ${i} ${i + 1} na trase ${busline.number} ${busline.smer}`)
+                    console.error(`Problém při hledání trasy od ${i} ${i + 1} na trase ${busline.number} ${busline.smer}`, busline.route)
 
                 break;
             }

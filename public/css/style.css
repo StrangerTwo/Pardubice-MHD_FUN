@@ -126,9 +126,6 @@ circle.place {
 circle.bus-stop {
     r: 5;
 }
-circle.place:hover {
-    r: 5;
-}
 circle.bus-stop:hover {
     r: 8;
 }

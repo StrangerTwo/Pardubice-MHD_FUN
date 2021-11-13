@@ -9,6 +9,8 @@ class Pardubice {
     width = 3067;
     height = 3500;
     map;
+    roadsGroup;
+    placesGroup;
     displayedBuslines;
 
     constructor(sizeCoeficient) {
@@ -51,6 +53,9 @@ class Pardubice {
     }
 
     Render() {
+        this.placesGroup = this.map.querySelector('#places');
+        this.roadsGroup = this.map.querySelector('#roads');
+
         if (this.places.length == 0) { return false };
         this.map.setAttribute("width", this.width * this.sizeCoeficient);
         this.map.setAttribute("height", this.height * this.sizeCoeficient);
@@ -63,9 +68,17 @@ class Pardubice {
 
             if (place.name) {
                 circle.classList.add("bus-stop");
+                var detail;
                 circle.addEventListener("mouseover", (e) => {
-                    this.createDetail(e.target, place);
+                    detail = this.createDetail(e.target, place);
                 });
+                circle.addEventListener("mouseout", (e) => {
+                    var detailTimer = setTimeout(() => {
+                        if (this.removeDetail(detail)) {
+                            clearInterval(detailTimer);
+                        }
+                    }, 750);
+                })
             }
             else {
                 // TODO: Remove
@@ -80,7 +93,7 @@ class Pardubice {
             circle.setAttribute("cy", y);
             circle.setAttribute("fill", "red");
 
-            this.map.appendChild(circle);
+            this.placesGroup.appendChild(circle);
         })
         
         this.generateSideBar();
@@ -101,8 +114,8 @@ class Pardubice {
     }
 
     renderBusline(busline) {
-        const colors = ["#FF0000", "#00FF00", "#0000FF"];
-        const busIndex = this.buslines.findIndex(x => x.number == busline.number && x.smer == busline.smer);
+        const colors = ["#FF0000", "#00FF00", "#0000FF", "#46032C", "#0AB92C", "#E1195E", "#31AE9F", "#EAD524", "#86784F", "#BA1B62", "#203248", "#FCCA73", "#547E39", "#D29442", "#81E514", "#030D62", "#F43712", "#02B8D5", "#910804", "#24AA64", "#928484", "#2A3628", "#4377F9", "#F28584", "#FDF020", "#980748", "#9143D1", "#F5DBC1"];
+        const busIndex = [...new Set(this.buslines.map(x => x.number))].findIndex(x => x == busline.number);
 
         for (let i = 1; i < busline.route.length; i++) {
             this.linedraw(this.getPlaceById(busline.route[i - 1]), this.getPlaceById(busline.route[i]), colors[busIndex]);
@@ -125,7 +138,7 @@ class Pardubice {
         line.setAttribute("y2", by);
         line.setAttribute("stroke", color);
 
-        this.map.appendChild(line);
+        this.roadsGroup.appendChild(line);
     }
 
     getPosition(place) {
@@ -214,11 +227,7 @@ class Pardubice {
             detail.classList.add("option-left");
         }
 
-        var detailTimer = setTimeout(() => {
-            if (this.removeDetail(detail)) {
-                clearInterval(detailTimer);
-            }
-        }, 750);
+        var detailTimer;
 
         detailValues.onmouseleave = () => {
             detailTimer = setTimeout(() => {

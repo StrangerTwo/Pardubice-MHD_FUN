@@ -232,7 +232,11 @@ class Pardubice {
             detail.classList.add("option-left");
         }
 
-        var detailTimer;
+        var detailTimer = setTimeout(() => {
+            if (this.removeDetail(detail)) {
+                clearInterval(detailTimer);
+            }
+        }, 750);
 
         detailValues.onmouseleave = () => {
             detailTimer = setTimeout(() => {

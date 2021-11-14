@@ -13,6 +13,11 @@ h1, h2 {
     padding-right: 300px;
 }
 
+.sidebar-container {
+    height: 100%;
+    overflow-y: scroll;
+}
+
 #sidebar {
     position: fixed;
     top: 0;

@@ -63,6 +63,8 @@ class Pardubice {
         const svgns = "http://www.w3.org/2000/svg";
 
         this.places.forEach((place) => {
+            if (!place.name) return;
+
             let circle = document.createElementNS(svgns, "circle");
             circle.classList.add("place");
 
@@ -182,8 +184,10 @@ class Pardubice {
     }
 
     removeDetail(detail) {
-        detail.parentElement.removeChild(detail);
-        return true;
+        if (detail && detail.parentElement) {
+            detail.parentElement.removeChild(detail);
+            return true;
+        }
     }
 
     createDetail(target, place) {
@@ -213,9 +217,10 @@ class Pardubice {
         p.innerHTML = "Autobusy: " + buses.join(", ");
         li.appendChild(p);
 
-        li = document.createElement('li');
-        ul.appendChild(li);
-        li.innerHTML = `ID : ${place.id}`;
+        // Only a debug option
+        // li = document.createElement('li');
+        // ul.appendChild(li);
+        // li.innerHTML = `ID : ${place.id}`;
 
         const [x, y] = this.getPosition(place);
 

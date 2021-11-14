@@ -71,14 +71,24 @@ export default class BusManager {
                 // currentTime should be between stopTimes[i] and stopTimes[i+1]
 
                 var ratio = (currentTime - stopTimes[i]) / (stopTimes[i + 1] - stopTimes[i])
-                var busStopRoute = this.getRouteBetweenBusstopsIndexes(i, i + 1, busline.route);
-                // console.log(busline.route.map(x => this.places.find(y => y.id == x)));
-                // console.log(`Start ${i} konec ${i + 1}`)
-                // console.log(busStopRoute);
-                if (busStopRoute) {
-                    this.renderBusOnRoute(ratio, busStopRoute, element, busline, stopTimes[0]);
-                } else
-                    console.error(`Problém při hledání trasy od ${i} ${i + 1} na trase ${busline.number} ${busline.smer}`, busline.route)
+
+                var placesOnRoute = busline.route.map(x => this.places.find(y => y.id === x));
+
+                var [startStop, startIndex] = placesOnRoute.map((x, i) => [x, i]).filter(([x, i]) => x.name)[i];
+                var [endStop, endIndex] = placesOnRoute.map((x, i) => [x, i]).filter(([x, i]) => x.name)[i + 1];
+
+                // var startStop = placesOnRoute.filter(x => x.name)[i];
+                // var endStop = placesOnRoute.filter(x => x.name)[i + 1];
+
+                // var startIndex = busline.route.findIndex(x => x == startStop.id);
+                // var endIndex = busline.route.findIndex(x => x == endStop.id);
+
+                var busStopRoute = placesOnRoute.filter((x, i) => i >= startIndex && i <= endIndex);
+                if (!busStopRoute.length) {
+                    console.log(placesOnRoute.filter(x => x.name), startStop, endStop, i, i+1)
+                }
+                
+                this.renderBusOnRoute(ratio, busStopRoute, element, busline, stopTimes[0]);
 
                 break;
             }
@@ -158,36 +168,6 @@ export default class BusManager {
         } else {
             console.error(`Nenalezena pozice autobusu vzdálenost ${distanceFromStop} trasa: ${route.length}`);
         }
-    }
-
-    getRouteBetweenBusstopsIndexes(startIndex, stopIndex, route) {
-        var routePlaces = [];
-
-        var busStopIndex = -1;
-        var stopFound = false;
-
-        for (let i = 0; i < route.length; i++) {
-            let place = this.places.find(x => x.id == route[i]);
-            if (place) {
-                if (place.name) { // Jedná se o zastávku
-                    busStopIndex += 1;
-                    if (busStopIndex >= startIndex) {
-                        routePlaces.push(place);
-
-                        if (stopFound) return routePlaces;
-                        else stopFound = true;
-                    }
-                } else {
-                    if (stopFound) {
-                        routePlaces.push(place);
-                    }
-                }
-
-            } else
-                console.error(`Chybějící place pro id: ${route[i]}`);
-        }
-
-        return false;
     }
 
     getPosition(place) {

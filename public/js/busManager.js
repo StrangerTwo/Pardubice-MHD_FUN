@@ -126,10 +126,9 @@ export default class BusManager {
             bus.setAttribute("y", ay + (by - ay) * ratioFromPlace)
             bus.setAttribute("fill", "green");
             bus.setAttribute("transform-box", "fill-box");
-            bus.setAttribute("transform-origin", "center");
-            bus.setAttribute("transform", "translate(-10, -5)");
+            bus.setAttribute("transform-origin", `${ax + (bx - ax) * ratioFromPlace} ${ay + (by - ay) * ratioFromPlace}`);
             // TODO: fix rotate
-            // bus.setAttribute(`transform", "translate(-10, -5) rotate(${angle})`);
+            bus.setAttribute("transform", `rotate(${angle}) translate(-10, -5)`);
 
             // bus.transformOrigin = "left 50%";
 

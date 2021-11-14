@@ -125,14 +125,8 @@ p {
     margin: 0;
 }
 
-circle.place {
-    r: 3;
-}
-circle.bus-stop {
-    r: 5;
-}
 circle.bus-stop:hover {
-    r: 8;
+    r: 8px;
 }
 
 line.road {

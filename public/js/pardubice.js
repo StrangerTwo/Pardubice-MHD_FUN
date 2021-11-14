@@ -70,6 +70,7 @@ class Pardubice {
 
             if (place.name) {
                 circle.classList.add("bus-stop");
+                circle.setAttribute("r", 5);
                 var detail;
                 circle.addEventListener("mouseover", (e) => {
                     detail = this.createDetail(e.target, place);

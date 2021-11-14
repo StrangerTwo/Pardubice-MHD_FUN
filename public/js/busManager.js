@@ -15,19 +15,16 @@ export default class BusManager {
     }
 
     Render() {
-        const buses = Array.from(this.map.parentElement.querySelectorAll(".bus"));
-        var usedBuses = 0;
-        for (let busline of this.buslines) {
-            usedBuses += this.renderBusline(busline, buses.filter((x, i) => i >= usedBuses));
-        }
-        buses.filter((x, i) => i >= usedBuses).forEach(element => {
+        this.map.parentElement.querySelectorAll(".bus").forEach((element) => {
             element.parentElement.removeChild(element);
-        })
+        });
+        for (let busline of this.buslines) {
+            this.renderBusline(busline);
+        }
     }
 
-    renderBusline(busline, buses) {
+    renderBusline(busline) {
         const timetable = this.timetables.find(x => x.number == busline.number && x.smer == busline.smer);
-        var usedBuses = 0;
         if (timetable) {
             var date = new Date();
             var currentTime = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
@@ -39,22 +36,14 @@ export default class BusManager {
                 var endTime = startTime + timetable.delayes[timetable.delayes.length - 1] * 60;
 
                 if (currentTime > startTime && currentTime < endTime) {
-                    var bus = buses[usedBuses];
-                    if (!bus) {
-                        bus = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-                        this.busesGroup.appendChild(bus);
-                    }
-                    this.renderBus(busline, currentTime, timetable.delayes.map(x => startTime + x * 60), bus);
-                    usedBuses++;
+                    this.renderBus(busline, currentTime, timetable.delayes.map(x => startTime + x * 60));
                 }
             }
         } else
             console.error(`Chybějící timetable pro number: ${busline.number} a smer: ${busline.smer}`);
-
-        return usedBuses;
     }
 
-    renderBus(busline, currentTime, stopTimes, element) {
+    renderBus(busline, currentTime, stopTimes) {
         // startTime => busline.route[0];
         // startTime + delayes[i] => busline.route[i + 1];
 
@@ -88,14 +77,14 @@ export default class BusManager {
                     console.log(placesOnRoute.filter(x => x.name), startStop, endStop, i, i+1)
                 }
                 
-                this.renderBusOnRoute(ratio, busStopRoute, element, busline, stopTimes[0]);
+                this.renderBusOnRoute(ratio, busStopRoute, busline, stopTimes[0]);
 
                 break;
             }
         }
     }
 
-    renderBusOnRoute(ratio, route, bus, busline, startTime) {
+    renderBusOnRoute(ratio, route, busline, startTime) {
         var length = 0;
 
         for (var i = 1; i < route.length; i++) {
@@ -129,20 +118,7 @@ export default class BusManager {
             var length = Math.hypot(ax - bx, ay - by) * ratioFromPlace;
             var angle = Math.atan2(by - ay, bx - ax) * 180 / Math.PI;
 
-            // var bus = document.createElement("div");
-            // bus.classList.add("bus");
-            // bus.style.height = 10 + "px";
-            // bus.style.width = 20 + "px";
-            // bus.style.left = (ax + (bx - ax) * ratioFromPlace) + "px";
-            // bus.style.top = (ay + (by - ay) * ratioFromPlace) + "px";
-            // // bus.style.transform = "rotate(" + angle + "deg)";
-            // // bus.style.transformOrigin = "left 50%";
-            // bus.style.position = "absolute";
-            // // bus.style.backgroundImage = "url('/bus.png')";
-            // bus.style.backgroundColor = "green";
-
-            // // this.map.parentElement.appendChild(bus);
-
+            const bus = document.createElementNS("http://www.w3.org/2000/svg", "rect");
             bus.classList.add("bus");
             bus.setAttribute("height", 10);
             bus.setAttribute("width", 20);
@@ -160,6 +136,8 @@ export default class BusManager {
             bus.addEventListener("mouseover", (e) => {
                 this.createDetail(e.target, busline, route[0], route[route.length - 1], startTime);
             });
+            
+            this.busesGroup.appendChild(bus);
 
             // bus.style.backgroundImage = "url('/bus.png')";
 

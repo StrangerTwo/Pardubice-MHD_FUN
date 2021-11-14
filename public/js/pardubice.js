@@ -74,13 +74,6 @@ class Pardubice {
                 circle.addEventListener("mouseover", (e) => {
                     detail = this.createDetail(e.target, place);
                 });
-                circle.addEventListener("mouseout", (e) => {
-                    var detailTimer = setTimeout(() => {
-                        if (this.removeDetail(detail)) {
-                            clearInterval(detailTimer);
-                        }
-                    }, 750);
-                })
             }
             else {
                 // TODO: Remove
